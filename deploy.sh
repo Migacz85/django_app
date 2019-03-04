@@ -22,9 +22,9 @@ echo "2. Create remote repository on heroku?"
 echo "This will: "
 echo "-Push project on heroku and setup env variables there"
 echo "3. Run server and develop locally"
-echo "===================="
 echo "Note! If you want run 3 you need to source this script"
-echo "Type 1 or 2 or 3?"
+echo "===================="
+echo "Choose 1 or 2 or 3?"
 
 decision='n'
 read decision
@@ -113,15 +113,16 @@ if [ $decision == 1 ]; then
   rm tmpfile
 
 	echo "Saving current python version - Heroku will respect this"
-  python -V > runtime.txt
+  # python -V > runtime.txt
 
   source venv/bin/activate
-	echo "Creating admin..."
-	python3 manage.py createsuperuser
   echo "Move static files to one folder"
 	python manage.py collectstatic
   echo "Make migrations" 
 	python3 manage.py migrate
+
+	echo "Creating admin..."
+	python3 manage.py createsuperuser
 
 	# Create Procfiles for external server
   echo "Create Procfile"
@@ -206,8 +207,11 @@ if [ $decision == 2 ]; then
 	git remote -v 
   heroku open
 
+  echo "If you created app on heroku that you don't want just type:" 
+	echo "heroku apps:destroy"
+	echo ""
   echo "Deployment on heroku is done! Here is heroku response: "
-	echo "Ctrl + q to quit"
+	echo "Ctrl + c to quit"
   heroku logs --tail	
 	
 fi
