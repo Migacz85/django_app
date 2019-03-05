@@ -19,6 +19,7 @@ echo "-Setup default settings.py file"
 echo "-Initialize git, (Can be skipped)"
 echo "-Make first commit (Can be skipped)"
 echo "2. Create remote repository on heroku?"
+
 echo "This will: "
 echo "-Push project on heroku and setup env variables there"
 echo "3. Run server and develop locally"
@@ -139,6 +140,7 @@ if [ $decision == 1 ]; then
   echo "venv/" >> .gitignore
   echo ".gitignore" >> .gitignore
   echo "db.sqlite3" >> .gitignore
+  echo "*.pyc" >> .gitignore
   
 	git add .
 	git commit -m "Initial commit"
