@@ -1,58 +1,85 @@
 #!/usr/bin/env bash
-############################################
-# Run Django or install new project script.#
-############################################
-# If you have already installed django and
-# you want to run project just run this script
-# from shell typing:
-# source run.sh
-# you need to install before 
-
+     
+ █████╗ ██████╗ ███╗   ███╗██╗███╗   ██╗
+██╔══██╗██╔══██╗████╗ ████║██║████╗  ██║
+███████║██║  ██║██╔████╔██║██║██╔██╗ ██║
+██╔══██║██║  ██║██║╚██╔╝██║██║██║╚██╗██║
+██║  ██║██████╔╝██║ ╚═╝ ██║██║██║ ╚████║
+╚═╝  ╚═╝╚═════╝ ╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝
+                                        
+████████╗ ██████╗  ██████╗ ██╗     ███████╗
+╚══██╔══╝██╔═══██╗██╔═══██╗██║     ██╔════╝
+   ██║   ██║   ██║██║   ██║██║     ███████╗
+   ██║   ██║   ██║██║   ██║██║     ╚════██║
+   ██║   ╚██████╔╝╚██████╔╝███████╗███████║
+   ╚═╝    ╚═════╝  ╚═════╝ ╚══════╝╚══════╝
+                                                                                                           
+############################################ 
 # In order to run this script you need to have dependecies like:
 # git, heroku, sed
 
-echo "1. Start new project?"
-echo "This will: "	
-echo "-Install Django,"
-echo "-Make admin"
-echo "-Setup default settings.py file"
-echo "-Initialize git, (Can be skipped)"
-echo "-Make first commit (Can be skipped)"
-echo "2. Create remote repository on heroku?"
-
-echo "This will: "
-echo "-Push project on heroku and setup env variables there"
-echo "3. Run server and develop locally"
-echo "Note! If you want run 3 you need to source this script"
-echo "===================="
-echo "Choose 1 or 2 or 3?"
+echo "|========================================"
+echo "|1. Start new project?"                 
+echo "|This will: "	
+echo "|- Install Django,"
+echo "|- Make admin"
+echo "|- Setup default settings.py file"
+echo "|- Initialize git, (Can be skipped)"
+echo "|- Make first commit (Can be skipped)"
+echo "|========================================"
+echo "|2. Create remote repository on heroku?"
+echo "|This will: "
+echo "|- Push project on heroku and setup env 
+| variables there"
+echo "|========================================"
+echo "|3. Run server and develop locally"
+echo "|- New SECRET-KEY will be setup to new 
+| secret key that can be accessed in 
+| secret2.key  file"
+echo "|- Vim plugin for accessing will be turn on"
+echo "|- Synchronize your github repository with 
+| the heroku app"
+echo "|- At the end your deployed link will be 
+| automatically open in your browser."
+echo "|Note! If you want run 3 you need to 
+| source this script"
+echo "|========================================"
+echo "|4. Set all env variables on heroku      "
+echo "|========================================"
+echo "|Choose 1 or 2 or 3 or 4?"
 
 decision='n'
 read decision
 
 if [ $decision == 3 ]; then
-	port=5003
+	port=5000
 	username="Migacz85"
-
-	export DEVELOPMENT=1
-	export HOSTNAME='localhost'
-  export SECRET_KEY=$(<secret.key)
 
   # Create new secret key if is not present
 	if [ ! -f secret.key ]; then
-		rand="$( strings /dev/urandom | tr -d '\n' | head -c50 )" 
+		rand="$( strings /dev/urandom | tr -d '\n' |  tr -d ' '  | head -c50 )" 
     echo	"$rand" > secret.key
 	fi
+  
+  # export AWS_DEFAULT_ACL = None
+	export DEVELOPMENT=1
+	export HOSTNAME='localhost'
 
-  # Test exteran databases here	
-  # export DATABASE_URL='postgres://xizoquvzyhrnks:714f3fd7bf7b889c25812494c20268cbe390b5e08706ca774b8fbdd96bdea926@ec2-46-137-121-216.eu-west-1.compute.amazonaws.com:5432/dbuhbf894gokvm'
-  unset DATABASE_URL
+  # You can test extern databases here	
+  # export DATABASE_URL=
 
   echo "Your temporary environmental variables are as follow:"
+  echo "" 
   echo "DEVELOPMENT - " $DEVELOPMENT
   echo "HOSTNAME -"	$HOSTNAME	
 	echo "SECRET_KEY -" $SECRET_KEY
   echo "DATABASE_URL -" $DATABASE_URL 	
+  echo " " 
+  source secret.sh # Keeping secret env variables here
+  echo "Secrets: "  
+	echo "AWS_ACCESS_KEY_ID" $AWS_ACCESS_KEY_ID
+	echo "AWS_SECRET_ACCESS_KEY" $AWS_SECRET_ACCESS_KEY
+	echo "SECRET_KEY" $SECRET_KEY
   echo " "	
 	echo "Following aliasses are avaliable:" 
 	echo "r - run the server again"
@@ -67,6 +94,7 @@ if [ $decision == 3 ]; then
 	python -m venv venv 
 	source venv/bin/activate
 	echo "Type 'deactivate' to quit virutal env"
+  echo "" 
   python manage.py runserver localhost:$port
 fi
 
@@ -184,11 +212,18 @@ if [ $decision == 2 ]; then
   random="$( strings /dev/urandom | tr -d '\n' | head -c50 )" 
   $random > secret2.key 	
 	
-	echo "Set environment variables on remote server"
+	echo "Setting environment variables on remote server"
+	# Don't make spaces betwen = and variables, because it won't work
+	# It's heroku default format for setting env variables.
   heroku config:set HOSTNAME=$project_name.herokuapp.com
   heroku config:set DEVELOPMENT=1
   heroku config:set SECRET_KEY="{$random}"	
-
+  
+  echo "Setting secrets on heroku:"
+  source secret.sh 
+	heroku config:set AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+	heroku config:set AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+	heroku config:set SECRET_KEY=$SECRET_KEY 	
 
 	echo "Install vim on heroku"
   heroku plugins:install heroku-vim
@@ -209,7 +244,7 @@ if [ $decision == 2 ]; then
 	git remote -v 
   heroku open
 
-  echo "If you created app on heroku that you don't want just type:" 
+  echo "If you created app on heroku that you dont want just type:" 
 	echo "heroku apps:destroy"
 	echo ""
   echo "Deployment on heroku is done! Here is heroku response: "
@@ -218,4 +253,25 @@ if [ $decision == 2 ]; then
 	
 fi
 
+if [ $decision == 4 ]; then 
+
+  echo "Setting secrets on heroku:"
+  source secret.sh 
+
+  # Create new secret key if is not present
+	if [ ! -f secret2.key ]; then
+		rand="$( strings /dev/urandom | tr -d '\n' |  tr -d ' '  | head -c50 )" 
+    echo	"$rand" > secret2.key
+	fi
+
+  export SECRET_KEY2=$(<secret2.key)
+	heroku config:set AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+	heroku config:set AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+	heroku config:set SECRET_KEY="$SECRET_KEY2"
+
+	echo "Setting environment variables on remote server"
+  heroku config:set DEVELOPMENT=1
+
+  echo "done" 
+fi
 
