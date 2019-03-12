@@ -1,73 +1,66 @@
 #!/usr/bin/env bash
-     
- █████╗ ██████╗ ███╗   ███╗██╗███╗   ██╗
-██╔══██╗██╔══██╗████╗ ████║██║████╗  ██║
-███████║██║  ██║██╔████╔██║██║██╔██╗ ██║
-██╔══██║██║  ██║██║╚██╔╝██║██║██║╚██╗██║
-██║  ██║██████╔╝██║ ╚═╝ ██║██║██║ ╚████║
-╚═╝  ╚═╝╚═════╝ ╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝
-                                        
-████████╗ ██████╗  ██████╗ ██╗     ███████╗
-╚══██╔══╝██╔═══██╗██╔═══██╗██║     ██╔════╝
-   ██║   ██║   ██║██║   ██║██║     ███████╗
-   ██║   ██║   ██║██║   ██║██║     ╚════██║
-   ██║   ╚██████╔╝╚██████╔╝███████╗███████║
-   ╚═╝    ╚═════╝  ╚═════╝ ╚══════╝╚══════╝
-                                                                                                           
+#  █████╗ ██████╗ ███╗   ███╗██╗███╗   ██╗
+# ██╔══██╗██╔══██╗████╗ ████║██║████╗  ██║
+# ███████║██║  ██║██╔████╔██║██║██╔██╗ ██║
+# ██╔══██║██║  ██║██║╚██╔╝██║██║██║╚██╗██║
+# ██║  ██║██████╔╝██║ ╚═╝ ██║██║██║ ╚████║
+# ╚═╝  ╚═╝╚═════╝ ╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝
+# ████████╗ ██████╗  ██████╗ ██╗     ███████╗
+# ╚══██╔══╝██╔═══██╗██╔═══██╗██║     ██╔════╝
+#    ██║   ██║   ██║██║   ██║██║     ███████╗
+#    ██║   ██║   ██║██║   ██║██║     ╚════██║
+#    ██║   ╚██████╔╝╚██████╔╝███████╗███████║
+#    ╚═╝    ╚═════╝  ╚═════╝ ╚══════╝╚══════╝
 ############################################ 
 # In order to run this script you need to have dependecies like:
 # git, heroku, sed
 
-echo "|========================================"
-echo "|1. Start new project?"                 
-echo "|This will: "	
-echo "|- Install Django,"
-echo "|- Make admin"
-echo "|- Setup default settings.py file"
-echo "|- Initialize git, (Can be skipped)"
-echo "|- Make first commit (Can be skipped)"
-echo "|========================================"
-echo "|2. Create remote repository on heroku?"
-echo "|This will: "
-echo "|- Push project on heroku and setup env 
-| variables there"
-echo "|========================================"
-echo "|3. Run server and develop locally"
-echo "|- New SECRET-KEY will be setup to new 
-| secret key that can be accessed in 
-| secret2.key  file"
-echo "|- Vim plugin for accessing will be turn on"
-echo "|- Synchronize your github repository with 
-| the heroku app"
-echo "|- At the end your deployed link will be 
-| automatically open in your browser."
-echo "|Note! If you want run 3 you need to 
-| source this script"
-echo "|========================================"
-echo "|4. Set all env variables on heroku      "
-echo "|========================================"
-echo "|Choose 1 or 2 or 3 or 4?"
+	echo "|========================================"
+	echo "|1. Start new project?"                 
+	echo "|This will: "	
+	echo "|- Install Django,"
+	echo "|- Make admin"
+	echo "|- Setup default settings.py file"
+	echo "|- Initialize git, (Can be skipped)"
+	echo "|- Make first commit (Can be skipped)"
+	echo "|========================================"
+	echo "|2. Create remote repository on heroku?"
+	echo "|This will: "
+	echo "|- Push project on heroku and setup env 
+	| variables there"
+	echo "|========================================"
+	echo "|3. Run server and develop locally"
+	echo "|- New SECRET-KEY will be setup to new 
+	| secret key that can be accessed in 
+	| secret2.key  file"
+	echo "|- Vim plugin for accessing will be turn on"
+	echo "|- Synchronize your github repository with 
+	| the heroku app"
+	echo "|- At the end your deployed link will be 
+	| automatically open in your browser."
+	echo "|Note! If you want run 3 you need to 
+	| source this script"
+	echo "|========================================"
+	echo "|4. Set all env variables on heroku      "
+	echo "|========================================"
+	echo "|Choose 1 or 2 or 3 or 4?"
 
 decision='n'
 read decision
-
+# LOCALHOST
 if [ $decision == 3 ]; then
 	port=5000
 	username="Migacz85"
-
   # Create new secret key if is not present
 	if [ ! -f secret.key ]; then
 		rand="$( strings /dev/urandom | tr -d '\n' |  tr -d ' '  | head -c50 )" 
     echo	"$rand" > secret.key
 	fi
-  
   # export AWS_DEFAULT_ACL = None
 	export DEVELOPMENT=1
 	export HOSTNAME='localhost'
-
   # You can test extern databases here	
   # export DATABASE_URL=
-
   echo "Your temporary environmental variables are as follow:"
   echo "" 
   echo "DEVELOPMENT - " $DEVELOPMENT
@@ -84,7 +77,10 @@ if [ $decision == 3 ]; then
 	echo "Following aliasses are avaliable:" 
 	echo "r - run the server again"
 	echo "m - make migrations"
+	echo "sa - django-admin startapp todo"
 	echo "s - create super user"
+	echo "v - enter virtual env"
+
 	alias r="python manage.py runserver localhost:$port"
 	alias m="python manage.py migrate"
 	alias v="source venv/bin/activate"	
@@ -97,14 +93,12 @@ if [ $decision == 3 ]; then
   echo "" 
   python manage.py runserver localhost:$port
 fi
-
-if [ $decision == 1 ]; then
-
+# STARTNEWPROJECT
+if [ $decison == 1 ]; then
 	if [ ! -f secret.key ]; then
 		rand="$( strings /dev/urandom | tr -d '\n' | head -c50 )" 
     echo	"$rand" > secret.key
 	fi
- 
 	export DEVELOPMENT=1
   export SECRET_KEY=$(<secret.key)
 	export HOSTNAME='localhost'
@@ -189,13 +183,9 @@ if [ $decision == 1 ]; then
   git remote add origin https://github.com/$username/$project_name.git
   git push -u origin master
  	fi
-
 fi
-
-#### Heroku deployment
-
+# HEROKU DEPLOYMENT
 if [ $decision == 2 ]; then
-
   heroku login
 
 	echo "Give your UNIQUE project name"
@@ -250,11 +240,9 @@ if [ $decision == 2 ]; then
   echo "Deployment on heroku is done! Here is heroku response: "
 	echo "Ctrl + c to quit"
   heroku logs --tail	
-	
 fi
-
+# SETTING ENV VARIABLES ON HEROKU
 if [ $decision == 4 ]; then 
-
   echo "Setting secrets on heroku:"
   source secret.sh 
 
@@ -270,7 +258,7 @@ if [ $decision == 4 ]; then
 	heroku config:set SECRET_KEY="$SECRET_KEY2"
 
 	echo "Setting environment variables on remote server"
-  heroku config:set DEVELOPMENT=1
+  heroku config:set DEVELOPMENT=0
 
   echo "done" 
 fi
