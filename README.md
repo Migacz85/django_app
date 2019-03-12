@@ -1,5 +1,7 @@
 # Unicorn Attractor
 
+[![Build Status](https://travis-ci.org/Migacz85/django_app.svg?branch=master)](https://travis-ci.org/Migacz85/django_app)
+
 The idea of this project is to build an issue tracker with ticket system. Where people can easy vote
 for issues to fixes that is connected with payment system. Please [read more](http://github.com/Migacz85/django_app/wiki/Goal-of-this-project)
 
