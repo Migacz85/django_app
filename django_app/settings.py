@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'whitenoise.runserver_nostatic',
     'storages',
+    'Home',
 ]
 
 MIDDLEWARE = [
@@ -131,20 +132,23 @@ AWS_S3_OBJECT_PARAMETERS = {
     'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
     'CacheControl': 'max-age=999999999'
 }
+
 AWS_STORAGE_BUCKET_NAME = 'unicorn2'
 AWS_S3_REGION_NAME = 'us-east-1'
 AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
 AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
 AWS_S3_CUSTOM_DOMAIN = AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com'
 
-STATICFILES_LOCATION = "staticfiles"
-STATICFILES_STORAGE = "custom_storages.StaticStorage"
-
-STATIC_URL = '/staticfiles/'
-
-STATICFILES_DIRS = [
-  os.path.join(BASE_DIR, 'staticfiles'),
-]
+# Use AMAZON S3 only on remote server
+# And on localhost use local staticfile
+if not development:
+    STATICFILES_LOCATION = "staticfiles"
+    STATICFILES_STORAGE = "custom_storages.StaticStorage"
+else:
+    STATIC_URL = '/staticfiles/'
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, 'staticfiles'),
+    ]
 
 # STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
