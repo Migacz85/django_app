@@ -15,35 +15,35 @@
 # In order to run this script you need to have dependecies like:
 # git, heroku, sed
 
-	echo "|========================================"
-	echo "|1. Start new project?"                 
-	echo "|This will: "	
-	echo "|- Install Django,"
-	echo "|- Make admin"
-	echo "|- Setup default settings.py file"
-	echo "|- Initialize git, (Can be skipped)"
-	echo "|- Make first commit (Can be skipped)"
-	echo "|========================================"
-	echo "|2. Create remote repository on heroku?"
-	echo "|This will: "
-	echo "|- Push project on heroku and setup env 
-	| variables there"
-	echo "|========================================"
-	echo "|3. Run server and develop locally"
-	echo "|- New SECRET-KEY will be setup to new 
-	| secret key that can be accessed in 
-	| secret2.key  file"
-	echo "|- Vim plugin for accessing will be turn on"
-	echo "|- Synchronize your github repository with 
-	| the heroku app"
-	echo "|- At the end your deployed link will be 
-	| automatically open in your browser."
-	echo "|Note! If you want run 3 you need to 
-	| source this script"
-	echo "|========================================"
-	echo "|4. Set all env variables on heroku      "
-	echo "|========================================"
-	echo "|Choose 1 or 2 or 3 or 4?"
+echo "|========================================"
+echo "|1. Start new project?"                 
+echo "|This will: "	
+echo "|- Install Django,"
+echo "|- Make admin"
+echo "|- Setup default settings.py file"
+echo "|- Initialize git, (Can be skipped)"
+echo "|- Make first commit (Can be skipped)"
+echo "|========================================"
+echo "|2. Create remote repository on heroku?"
+echo "|This will: "
+echo "|- Push project on heroku and setup env 
+| variables there"
+echo "|========================================"
+echo "|3. Run server and develop locally"
+echo "|- New SECRET-KEY will be setup to new 
+| secret key that can be accessed in 
+| secret2.key  file"
+echo "|- Vim plugin for accessing will be turn on"
+echo "|- Synchronize your github repository with 
+| the heroku app"
+echo "|- At the end your deployed link will be 
+| automatically open in your browser."
+echo "|Note! If you want run 3 you need to 
+| source this script"
+echo "|========================================"
+echo "|4. Set all env variables on heroku      "
+echo "|========================================"
+echo "|Choose 1 or 2 or 3 or 4?"
 
 decision='n'
 read decision
@@ -77,7 +77,7 @@ if [ $decision == 3 ]; then
 	echo "Following aliasses are avaliable:" 
 	echo "r - run the server again"
 	echo "m - make migrations"
-	echo "sa - django-admin startapp todo"
+	echo "sa - django-admin startapp"
 	echo "s - create super user"
 	echo "v - enter virtual env"
 
