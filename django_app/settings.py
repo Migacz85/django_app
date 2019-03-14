@@ -12,7 +12,7 @@ import dj_database_url
 # import django_heroku
 # django_heroku.settings(locals())
 
-if "DEVELOPMENT" in os.environ:
+if 'DEVELOPMENT' in os.environ:
     development = int(os.environ.get('DEVELOPMENT'))
 else:
     development = 0
@@ -73,7 +73,7 @@ TEMPLATES = [
     },
 ]
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "bootcamp.settings")
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'bootcamp.settings')
 
 WSGI_APPLICATION = 'django_app.wsgi.application'
 
@@ -84,12 +84,12 @@ WSGI_APPLICATION = 'django_app.wsgi.application'
 # If You are developing locally use db.sqlite, on server use server db
 # Note: your local system should have env variable DEVELOPMENT=1
 
-if "DATABASE_URL" in os.environ:
+if 'DATABASE_URL' in os.environ:
     DATABASES = {
         'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
     }
 else:
-    print("Database URL not found. Using SQLite instead")
+    print('Database URL not found. Using SQLite instead')
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -135,8 +135,8 @@ AWS_S3_OBJECT_PARAMETERS = {
 
 AWS_STORAGE_BUCKET_NAME = 'unicorn2'
 AWS_S3_REGION_NAME = 'us-east-1'
-AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
-AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 AWS_S3_CUSTOM_DOMAIN = AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com'
 
 # Use AMAZON S3 only on remote server
@@ -144,13 +144,12 @@ AWS_S3_CUSTOM_DOMAIN = AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com'
 if not development:
     STATICFILES_LOCATION = "staticfiles"
     STATICFILES_STORAGE = "custom_storages.StaticStorage"
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 else:
     STATIC_URL = '/staticfiles/'
     STATICFILES_DIRS = [
         os.path.join(BASE_DIR, 'staticfiles'),
     ]
-
-# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIAFILES_LOCATION = 'media'
 DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
@@ -158,4 +157,6 @@ DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-EMAIL_BACKEND = "django.core.mail.backends.console.Email.Backend"
+EMAIL_BACKEND = 'django.core.mail.backends.console.Email.Backend'
+
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
