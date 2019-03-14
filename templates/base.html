@@ -1,36 +1,40 @@
 {% load static from staticfiles %}
-
 <html lang="en">
 <head>
-
   <meta charset="UTF-8">
-  <meta name="description" content="Unicorn is a ticket system for bugs and issues">
-  <meta name="keywords" content="Unicorn, bugs, tickets, code institute">
-  <meta name="author" content="Marcin Mrugacz">
+	<meta name="description" content="{% block description %}{% endblock %} ">
+  <meta name="keywords" content="{% block keywords %}{% endblock %} ">
+  <meta name="author" content="{% block author %}{% endblock %} ">
   <meta name="viewport" content="width=, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <title>Scrolling Nav - Start Bootstrap Template</title>
-
+	<title>{% block title %}{% endblock %}</title>
   <!-- Bootstrap core CSS -->
-	<!-- <link href="{% static 'Home/css/bootstrap.min.css' %}" rel="stylesheet"> -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
   <!-- Custom styles for this template -->
 	<link href="{% static 'Home/css/scrolling-nav.css' %}" rel="stylesheet">
-
 </head>
 
-<body id="page-top">
-{% block content %}
+	<body id="page-top">
+	{% include 'navigation.html' %}
+	{% for message in messages  %}
+  <header class="bg-success	text-white">
+    <div class="container text-center">
+			<h1>{{ message }}</h1>
+			<p class="lead"></p>
+			{% endfor %}
+    </div>
+  </header>
 
-{% endblock %}
-
-</body>
-
+	{% block forms %}{% endblock forms %}
+	{% block content %}{% endblock content %}
+	</body>
+  <!-- Bootstrap core JavaScript -->
+	<script src="{% static 'Home/vendor/jquery/jquery.min.js' %}"></script>
+	<script src="{% static 'Home/vendor/js/bootstrap.bundle.min.js' %}"></script>
+  <!-- Plugin JavaScript -->
+	<script src="{% static 'Home/vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+  <!-- Custom JavaScript -->
+	<script src="{% static 'Home/js/scrolling-nav.js' %}"></script>
 </html>
