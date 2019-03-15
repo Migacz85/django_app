@@ -23,4 +23,5 @@ urlpatterns = [
     re_path(r'^accounts/logout/$', logout, name="logout"),
     re_path(r'^accounts/login/$', login , name="login"),
     re_path(r'^accounts/register/$', register , name="register"),
+    re_path(r'^accounts/profile/$', user_profile , name="user_profile"),
 ]

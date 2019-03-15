@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, reverse
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from Home.forms import UserLoginForm, UserRegistrationFrom
 
 
@@ -63,8 +64,8 @@ def register(request):
             registration_form.save()
 
         user = auth.authenticate(
-                username=request.POST['username'],
-                password=request.POST['password1']
+            username=request.POST['username'],
+            password=request.POST['password1']
         )
 
         if user:
@@ -83,4 +84,14 @@ def register(request):
         request,
         'registration.html',
         {"registration_form": registration_form}
+    )
+
+
+def user_profile(request):
+    """The user's profile page"""
+    user = User.objects.get(email=request.user.email)
+    return render(
+        request,
+        'user_profile.html',
+        {"profile": user}
     )
