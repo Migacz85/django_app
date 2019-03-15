@@ -1,14 +1,15 @@
 from django.shortcuts import render, redirect, reverse
 from django.contrib import auth, messages
-from Home.forms import UserLoginForm
+from django.contrib.auth.decorators import login_required
+from Home.forms import UserLoginForm, UserRegistrationFrom
 
 
 def home(request):
-
-    # messages.success(request, 'Welcome in Unicorn attractor')
+    """Home page"""
     return render(request, 'home.html')
 
 
+@login_required
 def logout(request):
     """Log the user out"""
     auth.logout(request)
@@ -36,14 +37,14 @@ def login(request):
                 messages.success(
                     request,
                     "You have successfully logged in!"
-                                 )
+                )
                 auth.login(user=user, request=request)
                 return redirect(reverse('home'))
             else:
                 login_form.add_error(
                     None,
                     "Your username or password is not valid"
-                                     )
+                )
     else:
         login_form = UserLoginForm()
     return render(request, 'login.html', {"login_form": login_form})
@@ -51,4 +52,35 @@ def login(request):
 
 def register(request):
     """Let user to register"""
-    return render(request, 'registration.html')
+
+    if request.user.is_authenticated:
+        return redirect(reverse('index'))
+
+    if request.method == "POST":
+        registration_form = UserRegistrationFrom(request.POST)
+
+        if registration_form.is_valid():
+            registration_form.save()
+
+        user = auth.authenticate(
+                username=request.POST['username'],
+                password=request.POST['password1']
+        )
+
+        if user:
+            auth.login(user=user, request=request)
+            messages.success(request, "You have successfully registered")
+            return redirect(reverse('home'))
+        else:
+            messages.error(
+                request,
+                "There were errors registering your account. Try again."
+            )
+    else:
+        registration_form = UserRegistrationFrom()
+
+    return render(
+        request,
+        'registration.html',
+        {"registration_form": registration_form}
+    )
