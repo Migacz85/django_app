@@ -10,7 +10,7 @@ class UserLoginForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput)
 
 
-class UserRegistrationFrom(UserCreationForm):
+class UserRegistrationForm(UserCreationForm):
     """Form to be used to register a user"""
     password1 = forms.CharField(
         label="Password",
@@ -24,7 +24,7 @@ class UserRegistrationFrom(UserCreationForm):
     class Meta:
         """Specify fields you want to expose here"""
         model = User
-        fields = ['email', 'username', 'password1' , 'password2' ]
+        fields = ['email', 'username', 'password1', 'password2']
 
     def clean_email(self):
         email = self.cleaned_data.get('email')
@@ -38,8 +38,7 @@ class UserRegistrationFrom(UserCreationForm):
         password2 = self.cleaned_data.get('password2')
 
         if not password1 or not password2:
-            raise ValidationError("Please confir yuor passwrod")
+            raise ValidationError("Please confirm your passwrod")
 
         if password1 != password2:
             raise ValidationError("Password are not the same")
-

@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, reverse
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from Home.forms import UserLoginForm, UserRegistrationFrom
+from Home.forms import UserLoginForm, UserRegistrationForm
 
 
 def home(request):
@@ -58,7 +58,7 @@ def register(request):
         return redirect(reverse('index'))
 
     if request.method == "POST":
-        registration_form = UserRegistrationFrom(request.POST)
+        registration_form = UserRegistrationForm(request.POST)
 
         if registration_form.is_valid():
             registration_form.save()
@@ -78,7 +78,7 @@ def register(request):
                 "There were errors registering your account. Try again."
             )
     else:
-        registration_form = UserRegistrationFrom()
+        registration_form = UserRegistrationForm()
 
     return render(
         request,
