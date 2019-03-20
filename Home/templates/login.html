@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load bootstrap_tags %}
 
 <!-- SEO -->
 {% block keywords%}	Login, extra functionality, {% endblock %}	
@@ -8,17 +9,22 @@
 <!-- END SEO -->
 
 {% block forms %} 
+
   <section id="login" class="bg-light">
     <div class="container">
       <div class="row">
         <div class="col-lg-8 mx-auto">
-          <h2>Login</h2>
+          <h2 class="border-bottom mb-4" >Login</h2>
           <p Enter your credentials here</p>
 					<form action="" method="post" class="lead">
 						{% csrf_token %}
-						{{ login_form.as_p }}
-						<button type="submit">Login</button>
+						{{ login_form | as_bootstrap }}
+						<button type="submit" class="btn btn-default" >Login</button>
 					</form>
+          <a href="{% url 'password_reset' %}">Forgot Password?</a>
+					<br>
+          <a href="{% url 'register' %}">Dont have account? - Register here. </a>
+
         </div>
       </div>
     </div>

@@ -55,7 +55,7 @@ def register(request):
     """Let user to register"""
 
     if request.user.is_authenticated:
-        return redirect(reverse('index'))
+        return redirect(reverse('home'))
 
     if request.method == "POST":
         registration_form = UserRegistrationForm(request.POST)
@@ -87,6 +87,7 @@ def register(request):
     )
 
 
+@login_required
 def user_profile(request):
     """The user's profile page"""
     user = User.objects.get(email=request.user.email)

@@ -16,10 +16,11 @@
 	<link href="{% static 'Home/css/scrolling-nav.css' %}" rel="stylesheet">
 </head>
 
-	<body id="page-top">
+	<body id="page-top" class="bg-light">
+
 	{% include 'navigation.html' %}
 	{% for message in messages  %}
-  <header class="bg-success	text-white">
+  <header class="allert alert-success">
     <div class="container text-center">
 			<h1>{{ message }}</h1>
 			<p class="lead"></p>
@@ -29,6 +30,13 @@
 
 	{% block forms %}{% endblock forms %}
 	{% block content %}{% endblock content %}
+
+  <footer class="py-5 bg-dark footer">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Unicorn  2019</p>
+    </div>
+  </footer>
+
 	</body>
   <!-- Bootstrap core JavaScript -->
 	<script src="{% static 'Home/vendor/jquery/jquery.min.js' %}"></script>
