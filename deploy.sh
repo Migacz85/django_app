@@ -243,7 +243,7 @@ if [ $decision == 2 ]; then
 fi
 # SETTING ENV VARIABLES ON HEROKU
 if [ $decision == 4 ]; then 
-  echo "Setting secrets on heroku:"
+  echo "Starting setting secrets on heroku..."
   source secret.sh 
 
   # Create new secret key if is not present
@@ -253,13 +253,15 @@ if [ $decision == 4 ]; then
 	fi
 
   export SECRET_KEY2=$(<secret2.key)
+	heroku config:set SECRET_KEY="$SECRET_KEY2"
 	heroku config:set AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
 	heroku config:set AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
-	heroku config:set SECRET_KEY="$SECRET_KEY2"
+  heroku config:set EMAIL_USER=$EMAIL_USER
+  heroku config:set EMAIL_PASSWORD=$EMAIL_PASSWORD
 
 	echo "Setting environment variables on remote server"
-  heroku config:set DEVELOPMENT=0
 
+  heroku config:set DEVELOPMENT=0
   echo "done" 
 fi
 
