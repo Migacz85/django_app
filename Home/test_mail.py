@@ -16,7 +16,3 @@ class EmailTest(TestCase):
         # Test that one message has been sent.
 
         self.assertEqual(len(mail.outbox), 1)
-
-        # Verify that the subject  of the first message is correct
-
-        self.assertEqual(mail.outbox[0], 'Subject here')
