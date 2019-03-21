@@ -19,14 +19,14 @@
 	<body id="page-top" class="bg-light">
 
 	{% include 'navigation.html' %}
+	{% for message in messages  %}
   <header class="allert alert-success">
-	    {% for message in messages  %}
     <div class="container text-center">
 			<h1>{{ message }}</h1>
 			<p class="lead"></p>
     </div>
-			{% endfor %}
   </header>
+	{% endfor %}
 
 	{% block forms %}{% endblock forms %}
 	{% block content %}{% endblock content %}
