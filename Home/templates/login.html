@@ -2,32 +2,30 @@
 {% load bootstrap_tags %}
 
 <!-- SEO -->
-{% block keywords%}	Login, extra functionality, {% endblock keywords %}	
+{% block keywords%} Login, extra functionality, {% endblock keywords %}
 {% block description %} This is a login page, enter your login and password here{% endblock description %}
-{% block author %} Marcin Mrugacz {% endblock author %}	
-{% block title %} Login  {% endblock title %}
+{% block author %} Marcin Mrugacz {% endblock author %}
+{% block title %} Login Page {% endblock title %}
 <!-- END SEO -->
-
-{% block forms %} 
-
-  <section id="login" >
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 mx-auto">
-          <h2 class="border-bottom mb-4" >Login</h2>
-					<p> Enter your credentials here</p>
-					<form method="post" class="lead">
-						{% csrf_token %}
-						{{ login_form | as_bootstrap }}
-						<button type="submit" class="btn btn-default" >Login</button>
-					</form>
-          <a href="{% url 'password_reset' %}">Forgot Password?</a>
-					<br>
-          <a href="{% url 'register' %}">Dont have account? - Register here. </a>
-
-        </div>
+{% block content %}
+<section id="login">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+        <h2 class="border-bottom mb-4">Login</h2>
+        <p> Enter your credentials here</p>
+        <form method="post" class="lead">
+          {% csrf_token %}
+          {{ login_form | as_bootstrap }}
+          <button type="submit" class="btn btn-default">Login</button>
+        </form>
+        <br>
+        <a href="{% url 'password_reset' %}">Forgot Password?</a>
+        <br>
+        <a href="{% url 'register' %}">Dont have account? - Register here. </a>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+{% endblock content %}
 
-{% endblock forms %} 

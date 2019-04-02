@@ -33,7 +33,6 @@ def login(request):
             user = auth.authenticate(
                 username=request.POST['username'],
                 password=request.POST['password'])
-
             if user:
                 messages.success(
                     request,
@@ -58,6 +57,7 @@ def register(request):
         return redirect(reverse('home'))
 
     if request.method == "POST":
+
         registration_form = UserRegistrationForm(request.POST)
 
         if registration_form.is_valid():

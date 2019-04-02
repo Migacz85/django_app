@@ -1,23 +1,22 @@
 {% extends 'base.html' %}
 
 <!-- SEO -->
-{% block keywords%}	User profile, extra functionality, {% endblock %}	
+{% block keywords%} User profile, extra functionality, {% endblock %}
 {% block description %} This is your user profile{% endblock %}
-{% block author %} Marcin Mrugacz {% endblock %}	
-{% block title %} {{user}}'s profile  {% endblock title %}
+{% block author %} Marcin Mrugacz {% endblock %}
+{% block title %} {{user}}'s profile {% endblock title %}
 <!-- END SEO -->
 
-{% block forms %} 
-  <section id="login" class="bg-light">
-    <div class="container">
-      <div class="row">
-        <div class="col-lk-8 mx-auto">
-					<h2> {{user}}'s profile </h2>
-          <p Enter your credentials here</p>
-					<p> {{ profile.email}} </p>
-        </div>
+{% block forms %}
+<section id="login" class="bg-light">
+  <div class="container">
+    <div class="row">
+      <div class="col-lk-8 mx-auto">
+        <h2> {{user}}'s profile </h2>
+        <p Enter your credentials here</p> <p> {{ profile.email}} </p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+{% endblock forms %}
 
-{% endblock forms %} 
