@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block form %}
+<div class="mr-auto">
+  
+<a href="{% url 'new_bug' %}" type="button" class="btn btn-primary float-right">Add new bug</a>       
+</div>
+
+<div class="container">
+<div class="row">
+<div class="col"></div>
+<div class="col"></div>
+</div>
+{% for bug in bugs  %}
+<h1>{{bug.title}}</h1>
+<p>{{bug.content }}</p>
+<p>views {{bug.views}}</p>
+<p> bug id {{bug.id}}</p>
+<a href=" {% url 'get_bug_detail' bug.id %} "> details </a>
+{% endfor %}
+
+</div>
+{% endblock form %}

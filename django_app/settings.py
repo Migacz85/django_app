@@ -41,8 +41,13 @@ INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
     'storages',
     'django_forms_bootstrap',
+    'crispy_forms',
     'Home',
+    'bugs',
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+# TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

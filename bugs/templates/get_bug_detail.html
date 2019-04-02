@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block form %}
+{{ bug.title }}
+{{ bug.content }}
+{{ bug.tag }}
+{% if bug.image %}
+  <img src="/media/{{bug.image}}" alt="">
+{% endif %}
+
+<a href="{% url 'new_bug' %}">Add new bug</a>       
+<br>
+
+<a href="{% url 'edit_bug' bug.id  %}">Edit this bug</a>       
+
+{% endblock form %}
+
+
