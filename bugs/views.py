@@ -27,8 +27,13 @@ def create_or_edit_bug(request, pk=None):
     bug = get_object_or_404(Bugs, pk=pk) if pk else None
     if request.method == "POST":
         form = BugForm(request.POST, request.FILES, instance=bug)
+
         if form.is_valid():
+            bug = form.save(commit=False)
+            bug.username = request.user
+            bug.created_date = timezone.now()
             bug = form.save()
+
             return redirect(get_bug_detail, bug.pk)
     else:
         form = BugForm(instance=bug)

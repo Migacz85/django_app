@@ -1,22 +1,42 @@
 {% extends 'base.html' %}
 {% block form %}
 <div class="mr-auto">
-  
-<a href="{% url 'new_bug' %}" type="button" class="btn btn-primary float-right">Add new bug</a>       
+
+  <a href="{% url 'new_bug' %}" type="button" class="btn btn-primary float-right">Add new bug</a>
+  <h1 class="mb-5">Current list of bugs</h1>
+
 </div>
 
-<div class="container">
-<div class="row">
-<div class="col"></div>
-<div class="col"></div>
+{% for bug in bugs %}
+
+<div class="card mb-1">
+  {% if forloop.counter0|divisibleby:2 %}
+  <div class="bg-gray">
+    {% endif %}
+    <div class="col-lg-8 mx-auto p-3">
+      <span class="float-right">
+        {% ifequal bug.status "('Waiting', 'Waiting')" %}
+        <div class="badge badge-info">Wating</div>
+        {% endifequal %}
+        {% ifequal bug.status "('In progress', 'In progress')" %}
+        <div class="badge bagde-warning">In progress</div>
+        {% endifequal %}
+        {% ifequal bug.status "('Completed', 'Complleted')" %}
+        <div class="badge badge-success">Completed</div>
+        {% endifequal %}
+      </span>
+      <h2><a href=" {% url 'get_bug_detail' bug.id %} "> {{bug.title}} </a></h2>
+      Opened on:
+      <i>{{ bug.created_date }}</i>
+      by
+      <i>{{ bug.username }}</i>
+      <div class="badge badge-primary float-right"> {{bug.views}}</div>
+    </div>
+    {% if forloop.counter0|divisibleby:2 %}
+  </div>
+  {% endif %}
 </div>
-{% for bug in bugs  %}
-<h1>{{bug.title}}</h1>
-<p>{{bug.content }}</p>
-<p>views {{bug.views}}</p>
-<p> bug id {{bug.id}}</p>
-<a href=" {% url 'get_bug_detail' bug.id %} "> details </a>
 {% endfor %}
 
-</div>
 {% endblock form %}
+

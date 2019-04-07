@@ -1,11 +1,17 @@
 {% extends "base.html" %}
 
 {% block form %}
-{{ bug.title }}
+
+<h1>{{ bug.title }}</h1>
 {{ bug.content }}
 {{ bug.tag }}
+{{ bug.username }}
+{{ bug.upvotes }} 
+{{ bug.created_date }} 
+{{ bug.status }} 
+
 {% if bug.image %}
-  <img src="/media/{{bug.image}}" alt="">
+<img src="/media/{{bug.image}}" alt="">
 {% endif %}
 
 <a href="{% url 'new_bug' %}">Add new bug</a>       

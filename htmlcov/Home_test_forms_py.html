@@ -123,49 +123,49 @@
 <p id="t3" class="pln"><span class="strut">&nbsp;</span></p>
 <p id="t4" class="pln"><span class="strut">&nbsp;</span></p>
 <p id="t5" class="stm run hide_run"><span class="key">class</span> <span class="nam">TestLoginForm</span><span class="op">(</span><span class="nam">TestCase</span><span class="op">)</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
-<p id="t6" class="pln">  <span class="str">"""Test for Login form"""</span><span class="strut">&nbsp;</span></p>
+<p id="t6" class="pln">    <span class="str">"""Test for Login form"""</span><span class="strut">&nbsp;</span></p>
 <p id="t7" class="pln"><span class="strut">&nbsp;</span></p>
-<p id="t8" class="stm run hide_run">  <span class="key">def</span> <span class="nam">test_can_input_password_and_username</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
-<p id="t9" class="pln">    <span class="str">"""Form is valid only when user enter name and password"""</span><span class="strut">&nbsp;</span></p>
-<p id="t10" class="stm run hide_run">    <span class="nam">form</span> <span class="op">=</span> <span class="nam">UserLoginForm</span><span class="op">(</span><span class="op">{</span><span class="str">'username'</span><span class="op">:</span> <span class="str">'Tom'</span><span class="op">,</span> <span class="str">'password'</span><span class="op">:</span> <span class="str">'password'</span><span class="op">}</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
-<p id="t11" class="stm run hide_run">    <span class="nam">self</span><span class="op">.</span><span class="nam">assertTrue</span><span class="op">(</span><span class="nam">form</span><span class="op">.</span><span class="nam">is_valid</span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t8" class="stm run hide_run">    <span class="key">def</span> <span class="nam">test_can_input_password_and_username</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
+<p id="t9" class="pln">        <span class="str">"""Form is valid only when user enter name and password"""</span><span class="strut">&nbsp;</span></p>
+<p id="t10" class="stm run hide_run">        <span class="nam">form</span> <span class="op">=</span> <span class="nam">UserLoginForm</span><span class="op">(</span><span class="op">{</span><span class="str">'username'</span><span class="op">:</span> <span class="str">'Tom'</span><span class="op">,</span> <span class="str">'password'</span><span class="op">:</span> <span class="str">'password'</span><span class="op">}</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t11" class="stm run hide_run">        <span class="nam">self</span><span class="op">.</span><span class="nam">assertTrue</span><span class="op">(</span><span class="nam">form</span><span class="op">.</span><span class="nam">is_valid</span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
 <p id="t12" class="pln"><span class="strut">&nbsp;</span></p>
-<p id="t13" class="stm run hide_run">  <span class="key">def</span> <span class="nam">test_can_not_input_username_without_password</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
-<p id="t14" class="pln">    <span class="str">"""Form is not valid when user don't enter a password"""</span><span class="strut">&nbsp;</span></p>
-<p id="t15" class="stm run hide_run">    <span class="nam">form</span> <span class="op">=</span> <span class="nam">UserLoginForm</span><span class="op">(</span><span class="op">{</span><span class="str">'username'</span><span class="op">:</span> <span class="str">'Tom'</span><span class="op">,</span> <span class="str">'password'</span><span class="op">:</span> <span class="str">''</span><span class="op">}</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
-<p id="t16" class="stm run hide_run">    <span class="nam">self</span><span class="op">.</span><span class="nam">assertFalse</span><span class="op">(</span><span class="nam">form</span><span class="op">.</span><span class="nam">is_valid</span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
-<p id="t17" class="stm run hide_run">    <span class="nam">self</span><span class="op">.</span><span class="nam">assertEqual</span><span class="op">(</span><span class="nam">form</span><span class="op">.</span><span class="nam">errors</span><span class="op">[</span><span class="str">'password'</span><span class="op">]</span><span class="op">,</span> <span class="op">[</span><span class="str">'This field is required.'</span><span class="op">]</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t13" class="stm run hide_run">    <span class="key">def</span> <span class="nam">test_can_not_input_username_without_password</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
+<p id="t14" class="pln">        <span class="str">"""Form is not valid when user don't enter a password"""</span><span class="strut">&nbsp;</span></p>
+<p id="t15" class="stm run hide_run">        <span class="nam">form</span> <span class="op">=</span> <span class="nam">UserLoginForm</span><span class="op">(</span><span class="op">{</span><span class="str">'username'</span><span class="op">:</span> <span class="str">'Tom'</span><span class="op">,</span> <span class="str">'password'</span><span class="op">:</span> <span class="str">''</span><span class="op">}</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t16" class="stm run hide_run">        <span class="nam">self</span><span class="op">.</span><span class="nam">assertFalse</span><span class="op">(</span><span class="nam">form</span><span class="op">.</span><span class="nam">is_valid</span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t17" class="stm run hide_run">        <span class="nam">self</span><span class="op">.</span><span class="nam">assertEqual</span><span class="op">(</span><span class="nam">form</span><span class="op">.</span><span class="nam">errors</span><span class="op">[</span><span class="str">'password'</span><span class="op">]</span><span class="op">,</span> <span class="op">[</span><span class="str">'This field is required.'</span><span class="op">]</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
 <p id="t18" class="pln"><span class="strut">&nbsp;</span></p>
 <p id="t19" class="pln"><span class="strut">&nbsp;</span></p>
 <p id="t20" class="stm run hide_run"><span class="key">class</span> <span class="nam">TestRegistrationForm</span><span class="op">(</span><span class="nam">TestCase</span><span class="op">)</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
-<p id="t21" class="pln">  <span class="str">"""Test for matching passwords in  registration form"""</span><span class="strut">&nbsp;</span></p>
+<p id="t21" class="pln">    <span class="str">"""Test for matching passwords in  registration form"""</span><span class="strut">&nbsp;</span></p>
 <p id="t22" class="pln"><span class="strut">&nbsp;</span></p>
-<p id="t23" class="stm run hide_run">  <span class="key">def</span> <span class="nam">test_password_must_match</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
-<p id="t24" class="stm run hide_run">    <span class="nam">form</span> <span class="op">=</span> <span class="nam">UserRegistrationForm</span><span class="op">(</span><span class="op">{</span><span class="strut">&nbsp;</span></p>
-<p id="t25" class="pln">        <span class="str">'email'</span><span class="op">:</span> <span class="str">'mig85@gmail.com'</span><span class="op">,</span><span class="strut">&nbsp;</span></p>
-<p id="t26" class="pln">        <span class="str">'username'</span><span class="op">:</span> <span class="str">'mig'</span><span class="op">,</span><span class="strut">&nbsp;</span></p>
-<p id="t27" class="pln">        <span class="str">'password1'</span><span class="op">:</span> <span class="str">'pass2'</span><span class="op">,</span><span class="strut">&nbsp;</span></p>
-<p id="t28" class="pln">        <span class="str">'password2'</span><span class="op">:</span> <span class="str">'pass'</span><span class="op">,</span><span class="strut">&nbsp;</span></p>
-<p id="t29" class="pln">    <span class="op">}</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
-<p id="t30" class="stm run hide_run">    <span class="nam">self</span><span class="op">.</span><span class="nam">assertFalse</span><span class="op">(</span><span class="nam">form</span><span class="op">.</span><span class="nam">is_valid</span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t23" class="stm run hide_run">    <span class="key">def</span> <span class="nam">test_password_must_match</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
+<p id="t24" class="stm run hide_run">        <span class="nam">form</span> <span class="op">=</span> <span class="nam">UserRegistrationForm</span><span class="op">(</span><span class="op">{</span><span class="strut">&nbsp;</span></p>
+<p id="t25" class="pln">            <span class="str">'email'</span><span class="op">:</span> <span class="str">'mig85@gmail.com'</span><span class="op">,</span><span class="strut">&nbsp;</span></p>
+<p id="t26" class="pln">            <span class="str">'username'</span><span class="op">:</span> <span class="str">'mig'</span><span class="op">,</span><span class="strut">&nbsp;</span></p>
+<p id="t27" class="pln">            <span class="str">'password1'</span><span class="op">:</span> <span class="str">'pass2'</span><span class="op">,</span><span class="strut">&nbsp;</span></p>
+<p id="t28" class="pln">            <span class="str">'password2'</span><span class="op">:</span> <span class="str">'pass'</span><span class="op">,</span><span class="strut">&nbsp;</span></p>
+<p id="t29" class="pln">        <span class="op">}</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t30" class="stm run hide_run">        <span class="nam">self</span><span class="op">.</span><span class="nam">assertFalse</span><span class="op">(</span><span class="nam">form</span><span class="op">.</span><span class="nam">is_valid</span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
 <p id="t31" class="pln"><span class="strut">&nbsp;</span></p>
-<p id="t32" class="stm run hide_run">  <span class="key">def</span> <span class="nam">test_mail_is_not_valid_without_a_dot</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
-<p id="t33" class="stm run hide_run">    <span class="nam">form</span> <span class="op">=</span> <span class="nam">UserRegistrationForm</span><span class="op">(</span><span class="op">{</span><span class="strut">&nbsp;</span></p>
-<p id="t34" class="pln">        <span class="str">'email'</span><span class="op">:</span> <span class="str">'mig85gmailcom'</span><span class="op">,</span><span class="strut">&nbsp;</span></p>
-<p id="t35" class="pln">        <span class="str">'username'</span><span class="op">:</span> <span class="str">'mig'</span><span class="op">,</span><span class="strut">&nbsp;</span></p>
-<p id="t36" class="pln">        <span class="str">'password1'</span><span class="op">:</span> <span class="str">'pass'</span><span class="op">,</span><span class="strut">&nbsp;</span></p>
-<p id="t37" class="pln">        <span class="str">'password2'</span><span class="op">:</span> <span class="str">'pass'</span><span class="op">,</span><span class="strut">&nbsp;</span></p>
-<p id="t38" class="pln">    <span class="op">}</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
-<p id="t39" class="stm run hide_run">    <span class="nam">self</span><span class="op">.</span><span class="nam">assertFalse</span><span class="op">(</span><span class="nam">form</span><span class="op">.</span><span class="nam">is_valid</span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t32" class="stm run hide_run">    <span class="key">def</span> <span class="nam">test_mail_is_not_valid_without_a_dot</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
+<p id="t33" class="stm run hide_run">        <span class="nam">form</span> <span class="op">=</span> <span class="nam">UserRegistrationForm</span><span class="op">(</span><span class="op">{</span><span class="strut">&nbsp;</span></p>
+<p id="t34" class="pln">            <span class="str">'email'</span><span class="op">:</span> <span class="str">'mig85gmailcom'</span><span class="op">,</span><span class="strut">&nbsp;</span></p>
+<p id="t35" class="pln">            <span class="str">'username'</span><span class="op">:</span> <span class="str">'mig'</span><span class="op">,</span><span class="strut">&nbsp;</span></p>
+<p id="t36" class="pln">            <span class="str">'password1'</span><span class="op">:</span> <span class="str">'pass'</span><span class="op">,</span><span class="strut">&nbsp;</span></p>
+<p id="t37" class="pln">            <span class="str">'password2'</span><span class="op">:</span> <span class="str">'pass'</span><span class="op">,</span><span class="strut">&nbsp;</span></p>
+<p id="t38" class="pln">        <span class="op">}</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t39" class="stm run hide_run">        <span class="nam">self</span><span class="op">.</span><span class="nam">assertFalse</span><span class="op">(</span><span class="nam">form</span><span class="op">.</span><span class="nam">is_valid</span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
 <p id="t40" class="pln"><span class="strut">&nbsp;</span></p>
-<p id="t41" class="stm run hide_run">  <span class="key">def</span> <span class="nam">test_mail_is_not_valid_without_at_symbol</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
-<p id="t42" class="stm run hide_run">    <span class="nam">form</span> <span class="op">=</span> <span class="nam">UserRegistrationForm</span><span class="op">(</span><span class="op">{</span><span class="strut">&nbsp;</span></p>
-<p id="t43" class="pln">        <span class="str">'email'</span><span class="op">:</span> <span class="str">'mig85gmail.com'</span><span class="op">,</span><span class="strut">&nbsp;</span></p>
-<p id="t44" class="pln">        <span class="str">'username'</span><span class="op">:</span> <span class="str">'mig'</span><span class="op">,</span><span class="strut">&nbsp;</span></p>
-<p id="t45" class="pln">        <span class="str">'password1'</span><span class="op">:</span> <span class="str">'pass'</span><span class="op">,</span><span class="strut">&nbsp;</span></p>
-<p id="t46" class="pln">        <span class="str">'password2'</span><span class="op">:</span> <span class="str">'pass'</span><span class="op">,</span><span class="strut">&nbsp;</span></p>
-<p id="t47" class="pln">    <span class="op">}</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
-<p id="t48" class="stm run hide_run">    <span class="nam">self</span><span class="op">.</span><span class="nam">assertFalse</span><span class="op">(</span><span class="nam">form</span><span class="op">.</span><span class="nam">is_valid</span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t41" class="stm run hide_run">    <span class="key">def</span> <span class="nam">test_mail_is_not_valid_without_at_symbol</span><span class="op">(</span><span class="nam">self</span><span class="op">)</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
+<p id="t42" class="stm run hide_run">        <span class="nam">form</span> <span class="op">=</span> <span class="nam">UserRegistrationForm</span><span class="op">(</span><span class="op">{</span><span class="strut">&nbsp;</span></p>
+<p id="t43" class="pln">            <span class="str">'email'</span><span class="op">:</span> <span class="str">'mig85gmail.com'</span><span class="op">,</span><span class="strut">&nbsp;</span></p>
+<p id="t44" class="pln">            <span class="str">'username'</span><span class="op">:</span> <span class="str">'mig'</span><span class="op">,</span><span class="strut">&nbsp;</span></p>
+<p id="t45" class="pln">            <span class="str">'password1'</span><span class="op">:</span> <span class="str">'pass'</span><span class="op">,</span><span class="strut">&nbsp;</span></p>
+<p id="t46" class="pln">            <span class="str">'password2'</span><span class="op">:</span> <span class="str">'pass'</span><span class="op">,</span><span class="strut">&nbsp;</span></p>
+<p id="t47" class="pln">        <span class="op">}</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t48" class="stm run hide_run">        <span class="nam">self</span><span class="op">.</span><span class="nam">assertFalse</span><span class="op">(</span><span class="nam">form</span><span class="op">.</span><span class="nam">is_valid</span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
 
             </td>
         </tr>
@@ -176,7 +176,7 @@
     <div class="content">
         <p>
             <a class="nav" href="index.html">&#xab; index</a> &nbsp; &nbsp; <a class="nav" href="https://coverage.readthedocs.io">coverage.py v4.5.3</a>,
-            created at 2019-03-19 09:41
+            created at 2019-04-05 14:06
         </p>
     </div>
 </div>
