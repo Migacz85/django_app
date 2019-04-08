@@ -3,8 +3,7 @@
 <div class="mr-auto">
 
   <a href="{% url 'new_bug' %}" type="button" class="btn btn-primary float-right">Add new bug</a>
-  <h1 class="mb-5">Current list of bugs</h1>
-
+  <h1 class="mb-5">Current list of bugs</h1> 
 </div>
 
 {% for bug in bugs %}
@@ -13,23 +12,27 @@
   {% if forloop.counter0|divisibleby:2 %}
   <div class="bg-gray">
     {% endif %}
-    <div class="col-lg-8 mx-auto p-3">
-      <span class="float-right">
+    <div class="col-lg-12 p-3">
+
+      <span class="float-left mr-2">
         {% ifequal bug.status "('Waiting', 'Waiting')" %}
-        <div class="badge badge-info">Wating</div>
+        <div class="badge badge-secondary">Wating</div>
         {% endifequal %}
-        {% ifequal bug.status "('In progress', 'In progress')" %}
-        <div class="badge bagde-warning">In progress</div>
+        {% ifequal bug.status "In progress" %}
+        <div class="badge badge-warning">In progress</div>
         {% endifequal %}
-        {% ifequal bug.status "('Completed', 'Complleted')" %}
+        {% ifequal bug.status "Completed" %}
         <div class="badge badge-success">Completed</div>
         {% endifequal %}
       </span>
-      <h2><a href=" {% url 'get_bug_detail' bug.id %} "> {{bug.title}} </a></h2>
+      <a href="{% url 'upvote_bug' bug.id  %}" type="button" class="badge badge-info bt-sm ml-1 float-right">{{ bug.upvotes}}</a>
+      <b><a href=" {% url 'get_bug_detail' bug.id %} "> {{bug.title}} </a></b>
+      <br>
       Opened on:
       <i>{{ bug.created_date }}</i>
       by
       <i>{{ bug.username }}</i>
+
       <div class="badge badge-primary float-right"> {{bug.views}}</div>
     </div>
     {% if forloop.counter0|divisibleby:2 %}

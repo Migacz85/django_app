@@ -62,10 +62,13 @@ class Comments(models.Model):
         blank=False
     )
 
+    def __str__(self):
+        return self.comment
+
 
 class BugsUpvote(models.Model):
     """ List of upvoted bugs """
-    upvoted_issue = models.ForeignKey(Bugs, default=None, on_delete=models.CASCADE)
+    upvoted_bug = models.ForeignKey(Bugs, default=None, on_delete=models.CASCADE)
     user = models.ForeignKey(User, default=None, on_delete=models.CASCADE)
 
     def __str__(self):
