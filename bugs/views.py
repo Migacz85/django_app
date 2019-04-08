@@ -57,11 +57,28 @@ def add_comment_bugs(request, pk=None):
 
 
 def upvote_bug(request, pk=None):
-    """Upvote bug by one point by one username"""
+    """View is adding or taking one vote for each bug"""
 
     bug = get_object_or_404(Bugs, pk=pk)
-    bug.upvotes += 1
-    bug.save()
+    upvote = BugsUpvote.objects.filter(upvoted_bug=bug)
+
+    if str(upvote)=='<QuerySet []>':
+        try:
+            u = get_object_or_404(
+            BugsUpvote, upvoted_bug=bug, user=request.user)
+        except:
+            u = BugsUpvote()
+        bug.upvotes += 1
+        bug.save()
+        u.upvoted_bug = bug
+        u.user = request.user
+        u.save()
+    else:
+        bug.upvotes -= 1
+        bug.save()
+        upvote.delete()
+
+
 
     return redirect(get_bug_detail, bug.pk)
     # TODO add user to db, then check if user already upvoted a bug

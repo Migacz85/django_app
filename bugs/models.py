@@ -46,6 +46,7 @@ class Bugs(models.Model):
     def __str__(self):
         return self.title
 
+
 class Comments(models.Model):
     """ Comment model that is connected with Bugs
     and username that is creating a comment"""
