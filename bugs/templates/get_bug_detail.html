@@ -4,7 +4,14 @@
 {% block form %}
 
 <span class="btn btn-primary float-right">
-  <a href="{% url 'upvote_bug' bug.id  %}" class="text-white">Vote {{ bug.upvotes }}</a>
+  <a href="{% url 'upvote_bug' bug.id  %}" 
+    class="text-white">Vote {{ bug.upvotes }}</a>
+  {% if upvoted %}
+  <i class="fa fa-hand-pointer-o"></i>
+  {% else %}
+  <i class="fa fa-hand-paper-o"></i>
+
+  {% endif %}
 </span>
 
 <h3>{{ bug.title }}</h3>
@@ -12,16 +19,17 @@
 <div class="card mt-4">
   <div class="card-header">
     <span class="float-left mr-2">
-        {% ifequal bug.status "('Waiting', 'Waiting')" %}
-        <div class="badge badge-secondary">Wating</div>
-        {% endifequal %}
-        {% ifequal bug.status "In progress" %}
-        <div class="badge badge-warning">In progress</div>
-        {% endifequal %}
-        {% ifequal bug.status "Completed" %}
-        <div class="badge badge-success">Completed</div>
-        {% endifequal %}
-      </span>
+      {% ifequal bug.status "('Waiting', 'Waiting')" %}
+      <div class="badge badge-secondary">Wating</div>
+      {% endifequal %}
+      {% ifequal bug.status "In progress" %}
+      <div class="badge badge-warning">In progress</div>
+      {% endifequal %}
+      {% ifequal bug.status "Completed" %}
+      <div class="badge badge-success">Completed</div>
+      {% endifequal %}
+    </span>
+    {{ bug.id }}
     Opened on:
     <i>{{ bug.created_date }}</i>
     by
@@ -30,35 +38,72 @@
   </div>
 
   <div class="card-body">
-
     {{ bug.content }}
+
+    {% if bug.image %}
+    <img src="/media/{{bug.image}}" alt="">
+    {% endif %}
+
   </div>
 
 </div>
 </div>
 </div>
 
-{% if bug.image %}
-<img src="/media/{{bug.image}}" alt="">
-{% endif %}
-
+<div class="col-lg-8 mx-auto">
+<h2 class="mt-4"> Comments: </h2>
+</div>
 {% for comment in comments %}
-<div class="card mt-2">
-<div class="card-header">
-    <i>{{ comment.created_date }}</i>
-    by
-    <i>{{ comment.username }}</i>
+<div class="col-lg-8 mx-auto">
+  <div class="card mt-4">
+    <div class="card-header">
+      <i>{{ comment.created_date }}</i>
+      by
+      <i>{{ comment.username }}</i>
+    </div>
+    <div class="card-body">
+      {{ comment }}
+    </div>
   </div>
-  <div class="card-body">
-    {{ comment }}
-  </div>
-
 </div>
 {% endfor %}
+<div class="col-lg-8 mx-auto">
+  <div class="btn btn-secondary float-right mt-2">
+    <a href="{% url 'add_comment_bugs' bug.id  %}" class="text-white"> Add comment </a>
+  </div>
+  <div class="btn btn-secondary float-left mt-2">
+    <a href="{% url 'get_bugs' %}" class="text-white">Go back to bug list</a>
+  </div>
+</div>
 
-<span class="btn btn-secondary float-right mt-2">
-  <a href="{% url 'add_comment_bugs' bug.id  %}" class="text-white"> Add comment </a>
-</span>
+<br>
+<br>
 
+<!-- Show pagination only if number of pages is higher than 1, in other case --> 
+<!-- simply dont show nothing at all -->
+
+<div class="col-lg-8 mx-auto mt-5">
+  <nav aria-label="comment pagination" class="mt-5">
+    <ul class="pagination">
+      {% if comments.has_previous %}
+      <a class="page-link" href="?page={{ comments.previous_page_number }}">Previous</a>
+      {% endif %}
+      {% for page in comments.paginator.page_range %}
+      {% if comments.number == page and comments.paginator.num_pages != 1 %}
+      <li class="page-item active">
+        <a class="page-link" href="#">{{ page }} <span class="sr-only">(current)</span></a>
+      </li>
+      {% elif comments.paginator.num_pages != 1 %}
+      <li class="page-item"><a class="page-link" href="?page={{page}}">{{page}}</a></li>
+      {% endif %}
+      {% endfor %}
+      {% if comments.has_next %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{ comments.next_page_number }}">Next</a>
+      </li>
+      {% endif %}
+    </ul>
+  </nav>
+</div>
 {% endblock form %}
 

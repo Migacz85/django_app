@@ -1,19 +1,19 @@
 {% extends 'base.html' %}
 {% block form %}
 <div class="mr-auto">
-
-  <a href="{% url 'new_bug' %}" type="button" class="btn btn-primary float-right">Add new bug</a>
-  <h1 class="mb-5">Current list of bugs</h1> 
+  <a href="{% url 'new_bug' %}" type="button" 
+    class="btn btn-primary float-right">Add new bug
+  <i class="fa fa-bug"></i>
+  </a>
+  <h1 class="mb-5">Current list of bugs</h1>
 </div>
-
 {% for bug in bugs %}
-
+{{ comments }}
 <div class="card mb-1">
   {% if forloop.counter0|divisibleby:2 %}
   <div class="bg-gray">
     {% endif %}
     <div class="col-lg-12 p-3">
-
       <span class="float-left mr-2">
         {% ifequal bug.status "('Waiting', 'Waiting')" %}
         <div class="badge badge-secondary">Wating</div>
@@ -25,21 +25,46 @@
         <div class="badge badge-success">Completed</div>
         {% endifequal %}
       </span>
-      <a href="{% url 'upvote_bug' bug.id  %}" type="button" class="badge badge-info bt-sm ml-1 float-right">{{ bug.upvotes}}</a>
+        <div class="ml-1 float-right">
+        {{ bug.upvotes}} <i class="fa fa-hand-paper-o"></i></div>
       <b><a href=" {% url 'get_bug_detail' bug.id %} "> {{bug.title}} </a></b>
       <br>
+      Bug
+      {{ bug.id }}
       Opened on:
       <i>{{ bug.created_date }}</i>
       by
       <i>{{ bug.username }}</i>
-
-      <div class="badge badge-primary float-right"> {{bug.views}}</div>
+      <div class="float-right">
+        {{bug.views}} <i class="fa fa-eye"></i> 
+      </div>
     </div>
     {% if forloop.counter0|divisibleby:2 %}
   </div>
   {% endif %}
 </div>
 {% endfor %}
+  
+<nav aria-label="bug pagination">
+  <ul class="pagination mt-5">
+      {% if bugs.has_previous %}
+      <a class="page-link" href="?page={{ bugs.previous_page_number }}">Previous</a>
+      {% endif %}
+      {% for page in bugs.paginator.page_range %}
+      {% if bugs.number == page %}
+    <li class="page-item active">
+      <a class="page-link" href="#">{{ page }} <span class="sr-only">(current)</span></a>
+    </li>
+      {% else %}
+      <li class="page-item"><a class="page-link" href="?page={{page}}">{{page}}</a></li>
+      {% endif %}
+      {% endfor %}
+      {% if bugs.has_next %}
+    <li class="page-item">
+      <a class="page-link" href="?page={{ bugs.next_page_number }}">Next</a>
+    </li>
+    {% endif %}
+  </ul>
+</nav>
 
 {% endblock form %}
-
