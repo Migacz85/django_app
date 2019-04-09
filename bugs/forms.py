@@ -11,7 +11,7 @@ class BugForm(forms.ModelForm):
 class CommentForm(forms.ModelForm):
     comment = forms.CharField(
         widget=forms.Textarea(
-            attrs={'rows': '5', 'cols': '5'})
+            attrs={'rows': '10', 'cols': '5'})
     )
 
     class Meta:
