@@ -152,6 +152,7 @@ if not development:
     STATICFILES_STORAGE = "custom_storages.StaticStorage"
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 else:
+    STATICFILES_LOCATION = "staticfiles"
     STATIC_URL = '/staticfiles/'
     STATICFILES_DIRS = [
         os.path.join(BASE_DIR, 'staticfiles'),
