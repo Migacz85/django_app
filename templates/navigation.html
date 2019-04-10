@@ -26,6 +26,7 @@
           </a>
         </li>
       </ul>
+
       {% if user.is_authenticated %}
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
@@ -40,7 +41,9 @@
             Profile
           </a>
         </li>
+      </ul>
         {% else %}
+      <ul class="navbar-nav ml-auto">
         <li class="nav-item">
           <a class="nav-link" href="{% url 'login' %}">
             <i class="fa fa-user"></i>
