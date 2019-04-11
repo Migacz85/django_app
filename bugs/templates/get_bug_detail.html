@@ -5,7 +5,7 @@
 
 <span class="btn btn-primary float-right">
   <a href="{% url 'upvote_bug' bug.id  %}" 
-    class="text-white">Vote {{ bug.upvotes }}</a>
+i                   class="text-white">Vote {{ bug.upvotes }}</a>
   {% if upvoted %}
   <i class="fa fa-hand-pointer-o"></i>
   {% else %}
@@ -41,7 +41,11 @@
     {{ bug.content }}
 
     {% if bug.image %}
-    <img src="/media/{{bug.image}}" alt="">
+
+    <br>
+    <br>
+    <img src="{{host_images_link}}{{bug.image}}" alt="image">
+
     {% endif %}
 
   </div>
@@ -105,5 +109,6 @@
     </ul>
   </nav>
 </div>
+
 {% endblock form %}
 

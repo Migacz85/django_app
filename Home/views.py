@@ -16,8 +16,6 @@ def logout(request):
     auth.logout(request)
     messages.success(request, ' You have successfully been logout')
 
-    # How to access 2 messages from django templates ?
-    # messages.info(request, 'We will wait for you till next time')
     return redirect(reverse('home'))
 
 

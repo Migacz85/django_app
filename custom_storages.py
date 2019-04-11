@@ -7,6 +7,6 @@ class StaticStorage(S3Boto3Storage):
     location = settings.STATICFILES_LOCATION
 
 
-class MediaStorage:
+class MediaStorage(S3Boto3Storage):
     """Keep Media files in separate folder"""
     location = settings.MEDIAFILES_LOCATION

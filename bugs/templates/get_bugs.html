@@ -45,26 +45,28 @@
 </div>
 {% endfor %}
   
-<nav aria-label="bug pagination">
-  <ul class="pagination mt-5">
+<div class="col-lg-8 mx-auto mt-5">
+  <nav aria-label="comment pagination" class="mt-5">
+    <ul class="pagination">
       {% if bugs.has_previous %}
       <a class="page-link" href="?page={{ bugs.previous_page_number }}">Previous</a>
       {% endif %}
       {% for page in bugs.paginator.page_range %}
-      {% if bugs.number == page %}
-    <li class="page-item active">
-      <a class="page-link" href="#">{{ page }} <span class="sr-only">(current)</span></a>
-    </li>
-      {% else %}
+      {% if bugs.number == page and bugs.paginator.num_pages != 1 %}
+      <li class="page-item active">
+        <a class="page-link" href="#">{{ page }} <span class="sr-only">(current)</span></a>
+      </li>
+      {% elif bugs.paginator.num_pages != 1 %}
       <li class="page-item"><a class="page-link" href="?page={{page}}">{{page}}</a></li>
       {% endif %}
       {% endfor %}
       {% if bugs.has_next %}
-    <li class="page-item">
-      <a class="page-link" href="?page={{ bugs.next_page_number }}">Next</a>
-    </li>
-    {% endif %}
-  </ul>
-</nav>
+      <li class="page-item">
+        <a class="page-link" href="?page={{ bugs.next_page_number }}">Next</a>
+      </li>
+      {% endif %}
+    </ul>
+  </nav>
+</div>
 
 {% endblock form %}

@@ -4,7 +4,7 @@ from .models import Bugs, BugsUpvote, Comments
 from .forms import BugForm, CommentForm
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
-
+from django_app.settings import host_images_link
 
 def get_bugs(request):
     """ Show list of all bugs """
@@ -44,6 +44,7 @@ def get_bug_detail(request, pk):
     return render(request, "get_bug_detail.html",
                   {'bug': bug,
                    'comments': comments,
+                   'host_images_link': host_images_link,
                    'upvoted': upvoted}
                   )
 

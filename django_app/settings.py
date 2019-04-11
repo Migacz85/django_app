@@ -47,7 +47,6 @@ INSTALLED_APPS = [
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-# TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -145,25 +144,30 @@ AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 AWS_S3_CUSTOM_DOMAIN = AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com'
 
+MEDIAFILES_LOCATION = 'media'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 # Use AMAZON S3 only on remote server
-# And on localhost use local staticfile
+# And on localhost use local staticfiles
 if not development:
     STATICFILES_LOCATION = "staticfiles"
     STATICFILES_STORAGE = "custom_storages.StaticStorage"
+    DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    host_images_link = 'https://' + AWS_S3_CUSTOM_DOMAIN + "/media/"
 else:
     STATICFILES_LOCATION = "staticfiles"
     STATIC_URL = '/staticfiles/'
     STATICFILES_DIRS = [
         os.path.join(BASE_DIR, 'staticfiles'),
     ]
+    host_images_link = 'http://' + os.environ.get('HOSTNAME') + ':' + os.environ.get('PORT') + MEDIA_URL
 
-MEDIAFILES_LOCATION = 'media'
-DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
+print(host_images_link)
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
+# For testing purpose, you can check if mail is actually sending
+# to the console using that line:
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

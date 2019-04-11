@@ -52,7 +52,6 @@ echo "|- update coverage html"
 echo "|- update python dependency requirements "  
 echo "|- push on github "
 echo "|Choose 1 or 2 or 3 or 4 or 5?"
-echo "|Choose 1 or 2 or 3 or 4 or 5?"
 
 decision='n'
 read decision
@@ -61,13 +60,17 @@ read decision
 if [ $decision == 3 ]; then
 	port=5000
 	username="Migacz85"
+    unset DATABASE_URL
+    # export DATABASE_URL='postgres://qkstunpbcqehkk:01159572c3775a94c96eaa7e4665b94375046d2c53491b602d4ae6a2e7834994@ec2-79-125-2-142.eu-west-1.compute.amazonaws.com:5432/dd37t2r0frb70k'
+
     # Create new secret key if is not present
 	if [ ! -f secret.key ]; then
 		rand="$( strings /dev/urandom | tr -d '\n' |  tr -d ' '  | head -c50 )" 
     echo	"$rand" > secret.key
 	fi
-	export DEVELOPMENT=1
-	export HOSTNAME='localhost'
+    export DEVELOPMENT=1
+    export HOSTNAME='localhost' 
+    export PORT=$port
     # You can test extern databases here	
     # export DATABASE_URL=
     echo "Your temporary environmental variables are as follow:"
@@ -107,14 +110,11 @@ fi
 if [ $decison == 1 ]; then
 	if [ ! -f secret.key ]; then
 		rand="$( strings /dev/urandom | tr -d '\n' | head -c50 )" 
-    echo	"$rand" > secret.key
+          echo	"$rand" > secret.key
 	fi
-	export DEVELOPMENT=1
+    export DEVELOPMENT=1
     export SECRET_KEY=$(<secret.key)
-	export HOSTNAME='localhost'
-	unset DATABASE_URL
-    # export DATABASE_URL='postgres://ltfitfkpxjxcsg:656b7a6bdf2de4b5fea0860236200585c225c4e3ed8a7143e1870da8405d933e@ec2-54-247-82-210.eu-west-1.compute.amazonaws.com:5432/dcp131rtk26hf9'
-
+    export HOSTNAME='localhost'
  	echo "Give your project name"
 	echo ""
     echo "Note: Name must start with a letter, end with a letter" 
@@ -124,8 +124,8 @@ if [ $decison == 1 ]; then
 
     python -m venv venv 
     source venv/bin/activate
-	pip3 install --upgrade pip
-	pip3 install django
+    pip3 install --upgrade pip
+    pip3 install django
 	# Specify version of djnago  
 	# pip3 install django==1.11.17
     pip3 install gunicorn 											 	# for running app on the server
@@ -237,8 +237,8 @@ if [ $decision == 4 ]; then
     echo	"$rand" > secret2.key
 	fi
     export SECRET_KEY2=$(<secret2.key)
-	heroku config:set SECRET_KEY="$SECRET_KEY2"
-	heroku config:set AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+    heroku config:set SECRET_KEY="$SECRET_KEY2"
+    heroku config:set AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
     heroku config:set AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
     heroku config:set EMAIL_USER=$EMAIL_USER
     heroku config:set EMAIL_PASSWORD=$EMAIL_PASSWORD
@@ -254,4 +254,3 @@ if [ $decision == 5 ]; then
 	coverage html 
 	git push 
 fi
-
