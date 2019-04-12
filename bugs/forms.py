@@ -1,10 +1,10 @@
 from django import forms
-from .models import Bugs, Comments
+from .models import Issues, Comments
 
 
 class BugForm(forms.ModelForm):
     class Meta:
-        model = Bugs
+        model = Issues
         fields = ('issue_type', 'title', 'content', 'image', 'tag')
 
 

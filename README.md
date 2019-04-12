@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/Migacz85/django_app.svg?branch=master)](https://travis-ci.org/Migacz85/django_app)
 # Unicorn Attractor
 
 The idea of this project is to build an issue tracker with ticket system. Where people can easy vote

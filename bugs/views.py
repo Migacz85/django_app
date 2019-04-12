@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
-from .models import Bugs, BugsUpvote, Comments
+from .models import Issues, IssueUpvote, Comments
 from .forms import BugForm, CommentForm
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
@@ -10,7 +10,7 @@ from django_app.settings import host_images_link
 def get_bugs(request):
     """ Show list of all bugs """
 
-    bugs = Bugs.objects.filter(
+    bugs = Issues.objects.filter(
         published_date__lte=timezone.now(),
         issue_type='Bug'
     ).order_by('-published_date')
@@ -27,16 +27,16 @@ def get_bugs(request):
 def get_features(request):
     """ Show list of all bugs """
 
-    bugs = Bugs.objects.filter(
+    issue = Issues.objects.filter(
         published_date__lte=timezone.now(),
         issue_type='Feature'
     ).order_by('-published_date')
-    paginator = Paginator(bugs, 5)
+    paginator = Paginator(issue, 5)
     page = request.GET.get('page')
-    bugs = paginator.get_page(page)
+    issue = paginator.get_page(page)
 
     return render(request, "get_bugs.html",
-                  {'bugs': bugs,
+                  {'bugs': issue,
                    'issue_name': 'features', }
                   )
 
@@ -51,15 +51,15 @@ def get_bug_detail(request, pk):
     page = request.GET.get('page')
     comments = paginator.get_page(page)
 
-    bug = get_object_or_404(Bugs, pk=pk)
-    upvote = BugsUpvote.objects.filter(upvoted_bug=bug)
+    bug = get_object_or_404(Issues, pk=pk)
+    upvote = IssueUpvote.objects.filter(upvoted_bug=bug)
 
     if str(upvote) == '<QuerySet []>':
         upvoted = True
     else:
         upvoted = False
 
-    bug = get_object_or_404(Bugs, pk=pk)
+    bug = get_object_or_404(Issues, pk=pk)
     bug.views += 1
     bug.save()
     return render(request, "get_bug_detail.html",
@@ -73,7 +73,7 @@ def get_bug_detail(request, pk):
 @login_required
 def create_or_edit_bug(request, pk=None):
     """ View that allows to create or edit bug """
-    bug = get_object_or_404(Bugs, pk=pk) if pk else None
+    bug = get_object_or_404(Issues, pk=pk) if pk else None
     if request.method == "POST":
         form = BugForm(request.POST, request.FILES, instance=bug)
         if form.is_valid():
@@ -94,7 +94,7 @@ def create_or_edit_bug(request, pk=None):
 @login_required
 def add_comment_bugs(request, pk=None):
     """Add comment to bugs"""
-    bug = get_object_or_404(Bugs, pk=pk)
+    bug = get_object_or_404(Issues, pk=pk)
     c = CommentForm(request.POST, request.FILES)
     if c.is_valid():
         instance = c.save(commit=False)
@@ -110,15 +110,15 @@ def add_comment_bugs(request, pk=None):
 def upvote_bug(request, pk=None):
     """View is adding or taking one vote for each bug"""
 
-    bug = get_object_or_404(Bugs, pk=pk)
-    upvote = BugsUpvote.objects.filter(upvoted_bug=bug)
+    bug = get_object_or_404(Issues, pk=pk)
+    upvote = IssueUpvote.objects.filter(upvoted_bug=bug)
 
     if str(upvote) == '<QuerySet []>':
         try:
             u = get_object_or_404(
-                BugsUpvote, upvoted_bug=bug, user=request.user)
+                IssueUpvote, upvoted_bug=bug, user=request.user)
         except BaseException:
-            u = BugsUpvote()
+            u = IssueUpvote()
         bug.upvotes += 1
         bug.save()
         u.upvoted_bug = bug

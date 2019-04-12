@@ -89,6 +89,7 @@ def register(request):
 def user_profile(request):
     """The user's profile page"""
     user = User.objects.get(email=request.user.email)
+
     return render(
         request,
         'user_profile.html',

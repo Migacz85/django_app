@@ -3,8 +3,10 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 
 
-class Bugs(models.Model):
-    """ A Single Bug model"""
+class Issues(models.Model):
+    """ A Single Issue model that can be either
+    a 'bug' or 'feature' and can be in 3 different
+    states. Waiting in progress or completed"""
 
     STATUS_CHOICES = (
         ('Waiting', 'Waiting'),
@@ -12,7 +14,7 @@ class Bugs(models.Model):
         ('Completed', 'Completed')
     )
 
-    BUG_TYPE = (
+    ISSUE_TYPE = (
         ('Bug', 'Bug'),
         ('Feature', 'Feature'),
     )
@@ -22,7 +24,7 @@ class Bugs(models.Model):
     )
 
     issue_type = models.CharField(
-        max_length=50, choices=BUG_TYPE,
+        max_length=50, choices=ISSUE_TYPE,
         default=('Bug', 'Bug')
     )
     status = models.CharField(
@@ -60,10 +62,10 @@ class Bugs(models.Model):
 
 
 class Comments(models.Model):
-    """ Comment model that is connected with Bugs
+    """ Comment model that is connected with Issues
     and username that is creating a comment"""
     ticket = models.ForeignKey(
-        Bugs, null=True, on_delete=models.CASCADE
+        Issues, null=True, on_delete=models.CASCADE
     )
     username = models.ForeignKey(
         User, null=None, on_delete=models.CASCADE
@@ -79,10 +81,8 @@ class Comments(models.Model):
         return self.comment
 
 
-class BugsUpvote(models.Model):
+class IssueUpvote(models.Model):
     """ List of upvoted bugs """
-    upvoted_bug = models.ForeignKey(Bugs, default=None, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, default=None, on_delete=models.CASCADE)
 
     def __str__(self):
         return str(self.user)

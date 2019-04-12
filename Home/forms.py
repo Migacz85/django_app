@@ -2,12 +2,22 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
+from Home.models import ProfilePic
+
 
 class UserLoginForm(forms.Form):
     """Form to be used to log user in"""
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput)
 
+
+class ProfilePicForm(forms.Form):
+    """Form that is used to update profile picture
+    of the user
+    """
+    class Meta:
+        model=ProfilePic
+        fields = ['avatar']
 
 class UserRegistrationForm(UserCreationForm):
     """Form to be used to register a user"""
