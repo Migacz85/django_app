@@ -12,4 +12,5 @@ matrix:
         - IP='0.0.0.0'
         - PORT='5000'
 script: 
-        - SECRET_KEY='secret' .manage.py test
+        - SECRET_KEY='secret' ./manage.py test
+
