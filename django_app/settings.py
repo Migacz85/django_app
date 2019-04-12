@@ -13,9 +13,14 @@ import dj_database_url
 # django_heroku.settings(locals())
 
 if 'DEVELOPMENT' in os.environ:
-    development = int(os.environ.get('DEVELOPMENT'))
+    if os.environ.get('DEVELOPMENT') == 'true':
+        development = 1
+    else:
+        development = 0
 else:
     development = 0
+
+development = 1
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
