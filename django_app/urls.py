@@ -26,7 +26,6 @@ urlpatterns = [
     re_path(r'^$', home, name="home"),
     path('admin/', admin.site.urls),
     re_path(r'^accounts/', include(accounts_urls)),
-    # re_path(r'^$', RedirectView.as_view(url="bugs/")),
-    re_path(r'bugs/', include('bugs.urls')),
+    re_path(r'issues/', include('bugs.urls')),
     re_path(r'^media/(?P<path>.*)$', serve, {'document_root': MEDIA_ROOT}),
 ]

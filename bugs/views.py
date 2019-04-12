@@ -6,17 +6,38 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django_app.settings import host_images_link
 
+
 def get_bugs(request):
     """ Show list of all bugs """
 
     bugs = Bugs.objects.filter(
-        published_date__lte=timezone.now()) .order_by('-published_date')
+        published_date__lte=timezone.now(),
+        issue_type='Bug'
+    ).order_by('-published_date')
     paginator = Paginator(bugs, 5)
     page = request.GET.get('page')
     bugs = paginator.get_page(page)
 
     return render(request, "get_bugs.html",
-                  {'bugs': bugs, }
+                  {'bugs': bugs,
+                   'issue_name': 'bugs', }
+                  )
+
+
+def get_features(request):
+    """ Show list of all bugs """
+
+    bugs = Bugs.objects.filter(
+        published_date__lte=timezone.now(),
+        issue_type='Feature'
+    ).order_by('-published_date')
+    paginator = Paginator(bugs, 5)
+    page = request.GET.get('page')
+    bugs = paginator.get_page(page)
+
+    return render(request, "get_bugs.html",
+                  {'bugs': bugs,
+                   'issue_name': 'features', }
                   )
 
 

@@ -2,10 +2,14 @@
 {% block form %}
 <div class="mr-auto">
   <a href="{% url 'new_bug' %}" type="button" 
-    class="btn btn-primary float-right">Add new bug
-  <i class="fa fa-bug"></i>
+    class="btn btn-primary float-right">Add new {{ issue_name }}
+    {% if issue_name == 'bugs' %}
+    <i class="fa fa-bug"></i>
+    {% else  %}
+    <i class="fa fa-bolt"></i>
+    {% endif %}
   </a>
-  <h1 class="mb-5">Current list of bugs</h1>
+  <h2 class="mb-5">Current list of {{ issue_name }}</h2>
 </div>
 {% for bug in bugs %}
 {{ comments }}
@@ -29,7 +33,11 @@
         {{ bug.upvotes}} <i class="fa fa-hand-paper-o"></i></div>
       <b><a href=" {% url 'get_bug_detail' bug.id %} "> {{bug.title}} </a></b>
       <br>
-      Bug
+    {% if issue_name == 'bugs' %}
+    <i class="fa fa-bug"></i>
+    {% else  %}
+    <i class="fa fa-bolt"></i>
+    {% endif %}
       {{ bug.id }}
       Opened on:
       <i>{{ bug.created_date }}</i>

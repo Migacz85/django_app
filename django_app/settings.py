@@ -164,8 +164,6 @@ else:
     ]
     host_images_link = 'http://' + os.environ.get('HOSTNAME') + ':' + os.environ.get('PORT') + MEDIA_URL
 
-print(host_images_link)
-
 # For testing purpose, you can check if mail is actually sending
 # to the console using that line:
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

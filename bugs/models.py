@@ -12,12 +12,24 @@ class Bugs(models.Model):
         ('Completed', 'Completed')
     )
 
+    BUG_TYPE = (
+        ('Bug', 'Bug'),
+        ('Feature', 'Feature'),
+    )
+
     title = models.CharField(
         max_length=200
     )
-    status = models.CharField(
-        max_length=50, choices=STATUS_CHOICES, default=('Waiting', 'Waiting')
+
+    issue_type = models.CharField(
+        max_length=50, choices=BUG_TYPE,
+        default=('Bug', 'Bug')
     )
+    status = models.CharField(
+        max_length=50, choices=STATUS_CHOICES,
+        default=('Waiting', 'Waiting')
+    )
+
     content = models.TextField()
     username = models.ForeignKey(
         User, default=None, on_delete=models.CASCADE

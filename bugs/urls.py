@@ -1,9 +1,10 @@
 from django.urls import re_path
 from .views import get_bugs, get_bug_detail, create_or_edit_bug
-from .views import upvote_bug, add_comment_bugs
+from .views import upvote_bug, add_comment_bugs, get_features
 
 urlpatterns = [
-    re_path(r'^$', get_bugs, name='get_bugs'),
+    re_path(r'bugs$', get_bugs, name='get_bugs'),
+    re_path(r'features$', get_features,  name='get_features'),
     re_path(r'^(?P<pk>\d+)/$', get_bug_detail, name='get_bug_detail'),
     re_path(r'^new/$', create_or_edit_bug, name='new_bug'),
     re_path(r'^(?P<pk>\d+)/edit/$', create_or_edit_bug, name='edit_bug'),

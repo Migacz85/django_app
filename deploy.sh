@@ -77,33 +77,33 @@ if [ $decision == 3 ]; then
     echo "" 
     echo "DEVELOPMENT - " $DEVELOPMENT
     echo "HOSTNAME -"	$HOSTNAME	
-	echo "SECRET_KEY -" $SECRET_KEY
+    echo "SECRET_KEY -" $SECRET_KEY
     echo "DATABASE_URL -" $DATABASE_URL 	
     echo " " 
     source secret.sh # Keeping secret env variables here
     echo "Secrets: "  
-	echo "AWS_ACCESS_KEY_ID" $AWS_ACCESS_KEY_ID
-	echo "AWS_SECRET_ACCESS_KEY" $AWS_SECRET_ACCESS_KEY
-	echo "SECRET_KEY" $SECRET_KEY
+    echo "AWS_ACCESS_KEY_ID" $AWS_ACCESS_KEY_ID
+    echo "AWS_SECRET_ACCESS_KEY" $AWS_SECRET_ACCESS_KEY
+    echo "SECRET_KEY" $SECRET_KEY
     echo " "	
-	echo "Following aliasses are avaliable:" 
-	echo "r - run the server again"
-	echo "m - make migrations"
-	echo "sa - django-admin startapp"
-	echo "s - create super user"
-	echo "v - enter virtual env"
+    echo "Following aliasses are avaliable:" 
+    echo "r - run the server again"
+    echo "m - make migrations"
+    echo "sa - django-admin startapp"
+    echo "s - create super user"
+    echo "v - enter virtual env"
 
-	alias r="python manage.py runserver localhost:$port"
-	alias m="python manage.py migrate"
-	alias v="source venv/bin/activate"	
-	alias s="python manage.py createsuperuser"	
-	echo ""
-	echo "virtual environment init"
-	python -m venv venv 
-	source venv/bin/activate
+    alias r="python manage.py runserver localhost:$port"
+    alias m="python manage.py makemigrations && python manage.py migrate"
+    alias v="source venv/bin/activate"	
+    alias s="python manage.py createsuperuser"	
+    echo ""
+    echo "virtual environment init"
+    python -m venv venv 
+    source venv/bin/activate
     echo "Type 'deactivate' to quit virutal env"
     echo "" 
-     python manage.py runserver localhost:$port
+    python manage.py runserver localhost:$port
 fi
 
 # STARTNEWPROJECT
@@ -115,11 +115,11 @@ if [ $decison == 1 ]; then
     export DEVELOPMENT=1
     export SECRET_KEY=$(<secret.key)
     export HOSTNAME='localhost'
- 	echo "Give your project name"
-	echo ""
+    echo "Give your project name"
+    echo ""
     echo "Note: Name must start with a letter, end with a letter" 
-	echo "or digit and can only contain lowercase letters, digits, and dashes."
-	read project_name
+    echo "or digit and can only contain lowercase letters, digits, and dashes."
+    read project_name
     echo "Install dependencies with django" 
 
     python -m venv venv 

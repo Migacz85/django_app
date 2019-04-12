@@ -24,10 +24,13 @@
   {% include 'navigation.html' %}
 
   {% for message in messages %}
+
   {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+  <script src="{% static 'Home/js/refresh.js' %}" charset="utf-8"></script>
   <header class="allert alert-success">
     {% endif %}
     {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+    <script src="{% static 'Home/js/refresh.js' %}" charset="utf-8"></script>
     <header class="allert alert-warning">
       {% endif %}
       <div class="container text-center">
@@ -38,20 +41,17 @@
     </header>
     {% endfor %}
 
-
-
     {% block content %}{% endblock content %}
 
     <section id="forms" class="bg-light">
       <div class="container">
         <div class="row">
           <div class="col-lg-8 mx-auto">
-          {% block form %}{% endblock form %}
+            {% block form %}{% endblock form %}
           </div>
         </div>
       </div>
     </section>
-
 
     <footer class="py-5 bg-dark footer">
       <div class="container">
@@ -69,3 +69,4 @@
 <script src="{% static 'Home/js/scrolling-nav.js' %}"></script>
 
 </html>
+
