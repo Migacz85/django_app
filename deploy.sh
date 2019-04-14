@@ -58,9 +58,9 @@ read decision
 
 # LOCALHOST
 if [ $decision == 3 ]; then
-	port=5000
-	username="Migacz85"
-    unset DATABASE_URL
+    port=5000
+    username="Migacz85"
+    # unset DATABASE_URL
     # export DATABASE_URL='postgres://qkstunpbcqehkk:01159572c3775a94c96eaa7e4665b94375046d2c53491b602d4ae6a2e7834994@ec2-79-125-2-142.eu-west-1.compute.amazonaws.com:5432/dd37t2r0frb70k'
 
     # Create new secret key if is not present
