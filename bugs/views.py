@@ -20,6 +20,7 @@ def get_bugs(request):
 
     return render(request, "get_bugs.html",
                   {'bugs': bugs,
+                   'simple_form': 1,
                    'issue_name': 'bugs', }
                   )
 
@@ -37,6 +38,7 @@ def get_features(request):
 
     return render(request, "get_bugs.html",
                   {'bugs': issue,
+                   'simple_form': 1,
                    'issue_name': 'features', }
                   )
 
@@ -66,6 +68,7 @@ def get_bug_detail(request, pk):
                   {'bug': bug,
                    'comments': comments,
                    'host_images_link': host_images_link,
+                   "simple_form": 1,
                    'upvoted': upvoted}
                   )
 
@@ -87,7 +90,8 @@ def create_or_edit_bug(request, pk=None):
         title = 'Create or edit bug'
         return render(
             request, 'create_or_edit_bug.html',
-            {'form': form, 'title': title}
+            {'form': form, 'title': title,
+                   "simple_form": 1, }
         )
 
 

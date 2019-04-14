@@ -4,9 +4,7 @@ from django.utils import timezone
 
 
 class Issues(models.Model):
-    """ A Single Issue model that can be either
-    a 'bug' or 'feature' and can be in 3 different
-    states. Waiting in progress or completed"""
+    """ A Single Bug model"""
 
     STATUS_CHOICES = (
         ('Waiting', 'Waiting'),
@@ -62,7 +60,7 @@ class Issues(models.Model):
 
 
 class Comments(models.Model):
-    """ Comment model that is connected with Issues
+    """ Comment model that is connected with Bugs
     and username that is creating a comment"""
     ticket = models.ForeignKey(
         Issues, null=True, on_delete=models.CASCADE
@@ -83,6 +81,8 @@ class Comments(models.Model):
 
 class IssueUpvote(models.Model):
     """ List of upvoted bugs """
+    upvoted_bug = models.ForeignKey(Issues, default=None, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, default=None, on_delete=models.CASCADE)
 
     def __str__(self):
         return str(self.user)

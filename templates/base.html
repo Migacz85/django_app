@@ -43,6 +43,7 @@
 
     {% block content %}{% endblock content %}
 
+    {% if simple_form == 1   %}
     <section id="forms" class="bg-light">
       <div class="container">
         <div class="row">
@@ -52,12 +53,16 @@
         </div>
       </div>
     </section>
+    {% endif %}
 
     <footer class="py-5 bg-dark footer">
+
       <div class="container">
         <p class="m-0 text-center text-white">Copyright &copy; Unicorn 2019</p>
+
       </div>
     </footer>
+
 </body>
 
 <!-- Bootstrap core JavaScript -->
