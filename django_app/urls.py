@@ -21,11 +21,13 @@ from Home.views import home
 from django.views.static import serve
 from .settings import MEDIA_ROOT
 from django.views.generic import RedirectView
+from cart import urls as urls_cart
 
 urlpatterns = [
     re_path(r'^$', home, name="home"),
     path('admin/', admin.site.urls),
     re_path(r'^accounts/', include(accounts_urls)),
     re_path(r'issues/', include('bugs.urls')),
+    re_path(r'^cart/', include(urls_cart)),
     re_path(r'^media/(?P<path>.*)$', serve, {'document_root': MEDIA_ROOT}),
 ]

@@ -96,6 +96,7 @@ if [ $decision == 3 ]; then
     alias r="python manage.py runserver localhost:$port"
     alias m="python manage.py makemigrations && python manage.py migrate"
     alias v="source venv/bin/activate"	
+    alias sa="python manage.py startapp"	
     alias s="python manage.py createsuperuser"	
     echo ""
     echo "virtual environment init"

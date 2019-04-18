@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static from staticfiles %}
+{% load bootstrap_tags %}
+{% block form %}
+
+    <h1>Your Cart</h1>
+   {% if total != 0 %}
+    {% if cart_items == '[]' %}
+     <h1>empty</h1>
+    {% endif %}
+  <div class="card mt-5" >
+    <div class="card-header jenter">
+      <h4>Summary</h4>
+    </div>
+    <div class="card-body ">
+      <table class='table table-small '>
+        <tr class='bottom-border'>
+          <th>Your items</th>
+          <th>Price</th>
+          <th>Delete</th>
+        </tr>
+        {% for item in cart_items %}
+        
+        
+        <tr>
+          <td><a href=" {% url 'get_bug_detail' item.ticket.id %}">{{item.ticket.title}} </a></td>
+          <td><i class="fa fa-usd" aria-hidden="true"></i>{{item.price}}</td>
+          <td>
+            <form class='ml-2' method="post" action="{% url 'remove_ticket' item.id %}">
+              {% csrf_token %}
+              <input name='quantity' type="hidden" value="0">
+              <button type="submit" class="btn btn-primary  btn-sm">
+                <i class="fa fa-trash" aria-hidden="true"></i>
+              </button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+      <hr >
+    </div>
+    {% if total == 0 %}
+    <div class="form-group float-right">
+      <button class="btn mr-5" role="button">Checkout</button>
+    </div>
+    {% else %}
+    <div class="form-group float-right">
+      <h3 class="float-left ml-4">Total: {{ total }} <i class="fa fa-usd" aria-hidden="true"></i></h3> 
+      <a href="#checkout" class="float-right btn btn-success mr-4" role="button">Checkout <i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+    </div>
+    {% endif %}
+  </div>
+<div class="mt-5"> </div>
+</div>
+</div>
+</div>
+{% else %}
+<div class="card mt-5">
+  
+ <div class="card-header"><h2>Summary</h2></div> 
+ <div class="card-body"><h4>You have nothing in your cart :-(</h4></div> 
+
+</div>
+  {% endif %} 
+
+
+{% endblock %}
+

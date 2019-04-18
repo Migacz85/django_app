@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from .models import Issues, IssueUpvote, Comments
 from .forms import BugForm, CommentForm
+from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django_app.settings import host_images_link
@@ -43,7 +44,7 @@ def get_features(request):
                   )
 
 
-def get_bug_detail(request, pk):
+def get_issue_detail(request, pk):
     """ Show details about single bug based on single post id
     Show also all comments that are associated with single bug
     """
@@ -53,28 +54,37 @@ def get_bug_detail(request, pk):
     page = request.GET.get('page')
     comments = paginator.get_page(page)
 
-    bug = get_object_or_404(Issues, pk=pk)
-    upvote = IssueUpvote.objects.filter(upvoted_bug=bug)
+    issue = get_object_or_404(Issues, pk=pk)
 
+    upvote = IssueUpvote.objects.filter(upvoted_bug=issue)
+
+    upvoted=False
     if str(upvote) == '<QuerySet []>':
-        upvoted = True
-    else:
         upvoted = False
+    else:
+        upvoted: True
+    # print(upvote.issue_type)
 
-    bug = get_object_or_404(Issues, pk=pk)
-    bug.views += 1
-    bug.save()
+    """Is issue actuall in cart? """
+    id = pk
+    cart = request.session.get('cart', {})
+    in_cart = cart.get(id, 0)
+
+    issue = get_object_or_404(Issues, pk=pk)
+    issue.views += 1
+    issue.save()
     return render(request, "get_bug_detail.html",
-                  {'bug': bug,
+                  {'bug': issue,
                    'comments': comments,
                    'host_images_link': host_images_link,
-                   "simple_form": 1,
+                   'simple_form': 1,
+                   'in_cart': in_cart,
                    'upvoted': upvoted}
                   )
 
 
 @login_required
-def create_or_edit_bug(request, pk=None):
+def create_or_edit_issue(request, pk=None):
     """ View that allows to create or edit bug """
     bug = get_object_or_404(Issues, pk=pk) if pk else None
     if request.method == "POST":
@@ -84,20 +94,22 @@ def create_or_edit_bug(request, pk=None):
             bug.username = request.user
             bug.created_date = timezone.now()
             bug = form.save()
-            return redirect(get_bug_detail, bug.pk)
+            return redirect(get_issue_detail, bug.pk)
     else:
         form = BugForm(instance=bug)
         title = 'Create or edit bug'
         return render(
             request, 'create_or_edit_bug.html',
-            {'form': form, 'title': title,
-                   "simple_form": 1, }
+            {
+            'form': form, 'title': title,
+             "simple_form": 1,
+             }
         )
 
 
 @login_required
-def add_comment_bugs(request, pk=None):
-    """Add comment to bugs"""
+def add_comment_issue(request, pk=None):
+    """Add comment to issues"""
     bug = get_object_or_404(Issues, pk=pk)
     c = CommentForm(request.POST, request.FILES)
     if c.is_valid():
@@ -105,13 +117,16 @@ def add_comment_bugs(request, pk=None):
         instance.username = request.user
         instance.ticket = bug
         c.save()
-        return redirect(get_bug_detail, bug.pk)
+        return redirect(get_issue_detail, bug.pk)
     title = "Add comment"
-    return render(request, "create_or_edit_bug.html", {'form': c, 'title': title})
+    return render(request, "create_or_edit_bug.html",
+                  {'form': c, 'title': title,
+                    "simple_form": 1,
+                   })
 
 
 @login_required
-def upvote_bug(request, pk=None):
+def upvote_issue(request, pk=None):
     """View is adding or taking one vote for each bug"""
 
     bug = get_object_or_404(Issues, pk=pk)
@@ -133,4 +148,4 @@ def upvote_bug(request, pk=None):
         bug.save()
         upvote.delete()
 
-    return redirect(get_bug_detail, bug.pk)
+    return redirect(get_issue_detail, bug.pk)

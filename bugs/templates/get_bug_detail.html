@@ -3,16 +3,35 @@
 
 {% block form %}
 
+{% if bug.issue_type == 'Feature' %}
+  
+{% if in_cart %}
+<form class='float-right' method="post" action="{% url 'remove_ticket_in_issue' bug.id %}">
+{% csrf_token %}
+<input type="hidden" name="quantity" value="0">
+<button type='submit' class='btn btn-primary'>Your vote is in cart <i class="fa fa-dolar"></i></button>
+</form>
+{% else %}
+<form class='float-right' method="post" action="{% url 'add_to_cart' bug.id %}">
+{% csrf_token %}
+<input type="hidden" name="quantity" value="1">
+<button type='submit' class='btn btn-primary'>Upvote <i class="fa fa-hand-pointer-o" aria-hidden="true"></i></button>
+</form>
+{% endif %}
+{% else %}
+
 <span class="btn btn-primary float-right">
   <a href="{% url 'upvote_bug' bug.id  %}" 
-i                   class="text-white">Vote {{ bug.upvotes }}</a>
+              class="text-white">Vote {{ bug.upvotes }}</a>
   {% if upvoted %}
-  <i class="fa fa-hand-pointer-o"></i>
-  {% else %}
   <i class="fa fa-hand-paper-o"></i>
-
+  {% else %}
+  <i class="fa fa-hand-pointer-o"></i>
   {% endif %}
 </span>
+
+  
+{% endif %}
 
 <h3>{{ bug.title }}</h3>
 
