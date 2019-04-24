@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'Home',
     'bugs',
     'cart',
+    'checkout',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -83,7 +84,7 @@ TEMPLATES = [
     },
 ]
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'bootcamp.settings')
+# os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'bootcamp.settings')
 
 WSGI_APPLICATION = 'django_app.wsgi.application'
 
@@ -143,6 +144,19 @@ AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=999999999'
 }
 
+# For testing purpose, you can check if mail is actually sending
+# to the console using that line:
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+# ENVIRONMENTAL VARIABLES
+EMAIL_HOST_USER = os.environ.get('EMAIL_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')
+STRIPE_PUBLISHABLE = os.getenv('STRIPE_PUBLISHABLE')
+STRIPE_SECRET = os.getenv('STRIPE_SECRET')
 AWS_STORAGE_BUCKET_NAME = 'unicorn2'
 AWS_S3_REGION_NAME = 'us-east-1'
 AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
@@ -168,17 +182,6 @@ else:
         os.path.join(BASE_DIR, 'staticfiles'),
     ]
     host_images_link = 'http://' + os.environ.get('HOSTNAME') + ':' + os.environ.get('PORT') + MEDIA_URL
-
-# For testing purpose, you can check if mail is actually sending
-# to the console using that line:
-# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = os.environ.get('EMAIL_USER')
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',

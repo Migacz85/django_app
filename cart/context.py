@@ -3,9 +3,9 @@ from bugs.models import Issues
 
 
 def cart_contents(request):
-    """Ensures that the cart contents are avaliable when rendering every page"""
+    """Ensures that the cart contents are
+    avaliable when rendering every page"""
 
-    # requests the cart object if there is one or a blank dictionary if there's not
     cart = request.session.get('cart', {})
     cart_items = []
     upvote_list = []

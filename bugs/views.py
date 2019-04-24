@@ -62,8 +62,8 @@ def get_issue_detail(request, pk):
     if str(upvote) == '<QuerySet []>':
         upvoted = False
     else:
-        upvoted: True
-    # print(upvote.issue_type)
+        upvoted = True
+
 
     """Is issue actuall in cart? """
     id = pk
@@ -97,7 +97,7 @@ def create_or_edit_issue(request, pk=None):
             return redirect(get_issue_detail, bug.pk)
     else:
         form = BugForm(instance=bug)
-        title = 'Create or edit bug'
+        title = 'Create or edit issue'
         return render(
             request, 'create_or_edit_bug.html',
             {
@@ -127,25 +127,28 @@ def add_comment_issue(request, pk=None):
 
 @login_required
 def upvote_issue(request, pk=None):
-    """View is adding or taking one vote for each bug"""
+    """View is adding or taking one vote for each issue"""
+    """TODO: double check if there was payment before calling,
+    this can be easy exploited by just calling link that is attached
+    to this view """
 
-    bug = get_object_or_404(Issues, pk=pk)
-    upvote = IssueUpvote.objects.filter(upvoted_bug=bug)
+    issue = get_object_or_404(Issues, pk=pk)
+    upvote = IssueUpvote.objects.filter(upvoted_bug=issue)
 
     if str(upvote) == '<QuerySet []>':
         try:
             u = get_object_or_404(
-                IssueUpvote, upvoted_bug=bug, user=request.user)
+                IssueUpvote, upvoted_bug=issue, user=request.user)
         except BaseException:
             u = IssueUpvote()
-        bug.upvotes += 1
-        bug.save()
-        u.upvoted_bug = bug
+        issue.upvotes += 1
+        issue.save()
+        u.upvoted_bug = issue
         u.user = request.user
         u.save()
     else:
-        bug.upvotes -= 1
-        bug.save()
+        issue.upvotes -= 1
+        issue.save()
         upvote.delete()
 
-    return redirect(get_issue_detail, bug.pk)
+    return redirect(get_issue_detail, issue.pk)

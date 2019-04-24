@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load bootstrap_tags %}
+{% load static from staticfiles %}
+{% block head_js %}
+<script type='text/javascript' src='https://js.stripe.com/v2/'></script>
+<script type="text/javascript">
+  //<![CDATA[
+  Stripe.publishableKey = '{{ publishable }}';
+  //]]>
+</script>
+<script type='text/javascript' src="{% static 'Home/js/stripe.js' %}"></script>
+{% endblock head_js %}
+{% block form %}
+<div class="test">
+  <div class="block d-sm-none"></div>
+  <div class="wrapper ">
+    <h1>Payment Details</h1>
+    <form role="form" method="post" id="payment-form" action="{% url 'checkout' %}">
+      {% csrf_token %}
+      <div class='margin-b-30'>
+        {{payment_form | as_bootstrap}}
+      </div>
+      <div class="card mt-5">
+        <div class="card-header jenter">
+          <h4>Summary</h4>
+        </div>
+        <div class="card-body ">
+          <table class='table table-small '>
+            <tr class='bottom-border'>
+              <th>Your items</th>
+              <th>Price</th>
+            </tr>
+            {% for item in cart_items %}
+            <tr>
+              <td><a href=" {% url 'get_bug_detail' item.ticket.id %}">{{item.ticket.title}} </a></td>
+              <td><i class="fa fa-usd" aria-hidden="true"></i>{{item.price}}</td>
+            </tr>
+            {% endfor %}
+          </table>
+          <hr>
+        </div>
+        {% if total == 0 %}
+        <div class="form-group float-right">
+          <button class="btn mr-5" role="button">Checkout</button>
+        </div>
+        {% else %}
+        <div class="form-group float-right">
+          <h3 class="float-left ml-4">Total: {{ total }} <i class="fa fa-usd" aria-hidden="true"></i></h3>
+          <button type='submit' class="btn btn-success float-right mr-4" id='submit_payment_btn'>Pay
+            Now <i class="fa fa-credit-card" aria-hidden="true"></i></button>
+        </div>
+        <div id="credit-card-errors" style="display:none">
+          <div class="ml-4 mr-4 alert alert-danger" id="stripe-error-message"></div>
+        </div>
+        {% endif %}
+      </div>
+   </form>
+  </div>
+</div>
+{% endblock %}
