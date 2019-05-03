@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/Migacz85/django_app.svg?branch=master)](https://travis-ci.org/Migacz85/django_app)
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
@@ -15,7 +17,6 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-[![Build Status](https://travis-ci.org/Migacz85/django_app.svg?branch=master)](https://travis-ci.org/Migacz85/django_app)
 # Unicorn Attractor
 
 Project was build as an exercise for getting more familiar with Django framework.
@@ -34,15 +35,21 @@ of whole documentation that is showing a bigger picture in smaller form.
 1.  Upvoting bugs 
 2.  Upvoting feature requests
 	- To upvote a feature request, users need to pay 
-3. Create tickets, 
+3. Creating tickets, 
 4. Comments on tickets, 
 5. Showing the status of the ticket  
 	1. to do,
 	2. doing, 
 	3. done.
-6. Cart
+6. Cart with checkout and payment
 7. Authentication of the users
-8. Pagination for comments and issues
+8. Resetting passwords by email
+9. Pagination for comments and issues
+
+## Not implemented features
+
+1. User Profile
+2. Charts that are showing summary for each month
 
 ## Technologies used
 

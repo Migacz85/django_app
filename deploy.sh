@@ -97,6 +97,8 @@ if [ $decision == 3 ]; then
     alias v="source venv/bin/activate"	
     alias sa="python manage.py startapp"	
     alias s="python manage.py createsuperuser"	
+    alias s3sync="aws s3 sync --acl public-read --sse --delete staticfiles s3://$AWS_STORAGE_BUCKET_NAME/staticfiles"
+
     echo ""
     echo "virtual environment init"
     python -m venv venv 
@@ -252,10 +254,9 @@ if [ $decision == 5 ]; then
 
       pip3 freeze --local > requirements.txt 
       coverage run --omit='*migrations*' --source=Home,cart,bugs,charts,checkout manage.py test
-      report
+      coverage report
 
       echo "Built html coverage and push it on github? y/n"
-
       read decision
       if [ $decision == y ]; then 
       coverage html 
