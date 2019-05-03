@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 {% load static from staticfiles %}
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="description" content="{% block description %}{% endblock %} ">
@@ -18,12 +17,9 @@
   <!-- Icons -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" media="all">
 </head>
-
 <body id="page-top" class="bg-light">
   {% include 'navigation.html' %}
-
   {% for message in messages %}
-
   {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
   <script src="{% static 'Home/js/refresh.js' %}" charset="utf-8"></script>
   <header class="allert alert-success">
@@ -39,10 +35,8 @@
         </div>
     </header>
     {% endfor %}
-
     {% block content %}{% endblock content %}
-
-    {% if simple_form == 1   %}
+    {% if simple_form == 1 %}
     <section id="forms" class="bg-light">
       <div class="container">
         <div class="row">
@@ -53,17 +47,13 @@
       </div>
     </section>
     {% endif %}
-
     <footer class="py-5 bg-dark footer">
-
+      <a href="https://github.com/Migacz85/django_app"><i class="fa fa-github" style="color:gray"></i></a>
       <div class="container">
         <p class="m-0 text-center text-white">Copyright &copy; Unicorn 2019</p>
-
       </div>
     </footer>
-
 </body>
-
 <!-- Bootstrap core JavaScript -->
 <script src="{% static 'Home/vendor/jquery/jquery.min.js' %}"></script>
 <script src="{% static 'Home/vendor/js/bootstrap.bundle.min.js' %}"></script>
@@ -72,6 +62,4 @@
 <!-- Custom JavaScript -->
 <script src="{% static 'Home/js/scrolling-nav.js' %}"></script>
 {% block head_js %} {% endblock head_js %}
-
 </html>
-
