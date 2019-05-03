@@ -44,13 +44,12 @@ echo "|========================================"
 echo "|4. Set all(with secrets) env variables on heroku"
 echo "|========================================"
 echo "|========================================"
-echo "|5. Deploy on github "
+echo "|5. Update coverage"
 echo "|========================================"
 echo "|This will: "
 echo "|- run tests"
 echo "|- update coverage html"
 echo "|- update python dependency requirements "  
-echo "|- push on github "
 echo "|Choose 1 or 2 or 3 or 4 or 5?"
 
 decision='n'
@@ -60,6 +59,8 @@ read decision
 if [ $decision == 3 ]; then
     port=5000
     username="Migacz85"
+
+    # If you will want to connect locally to external db:
     # unset DATABASE_URL
     # export DATABASE_URL='postgres://qkstunpbcqehkk:01159572c3775a94c96eaa7e4665b94375046d2c53491b602d4ae6a2e7834994@ec2-79-125-2-142.eu-west-1.compute.amazonaws.com:5432/dd37t2r0frb70k'
 
@@ -71,8 +72,6 @@ if [ $decision == 3 ]; then
     export DEVELOPMENT=1
     export HOSTNAME='localhost' 
     export PORT=$port
-    # You can test extern databases here	
-    # export DATABASE_URL=
     echo "Your temporary environmental variables are as follow:"
     echo "" 
     echo "DEVELOPMENT - " $DEVELOPMENT
@@ -248,11 +247,20 @@ if [ $decision == 4 ]; then
     echo "done" 
 fi
 
-# DEPLOYMENT 
+# UPDATE COVERAGE 
 if [ $decision == 5 ]; then 
-        
-	pip3 freeze --local > requirements.txt 
-        coverage run manage.py test
-	coverage html 
-	git push 
+
+      pip3 freeze --local > requirements.txt 
+      coverage run --omit='*migrations*' --source=Home,cart,bugs,charts,checkout manage.py test
+      report
+
+      echo "Built html coverage and push it on github? y/n"
+
+      read decision
+      if [ $decision == y ]; then 
+      coverage html 
+      git add . 
+      git commit -m "Update: html Coverage"
+      git push 
+      fi 
 fi
