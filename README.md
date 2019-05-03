@@ -1,3 +1,20 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
+
+- [Unicorn Attractor](#unicorn-attractor)
+  - [Implemented features](#implemented-features)
+  - [Technologies used](#technologies-used)
+  - [UX](#ux)
+  - [Writing automated tests:](#writing-automated-tests)
+  - [Developing this project](#developing-this-project)
+  - [Deployment on external servers (like heroku)](#deployment-on-external-servers-like-heroku)
+  - [Quick new Django project](#quick-new-django-project)
+  - [Interesting errors I noticed during development](#interesting-errors-i-noticed-during-development)
+  - [Credits](#credits)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 [![Build Status](https://travis-ci.org/Migacz85/django_app.svg?branch=master)](https://travis-ci.org/Migacz85/django_app)
 # Unicorn Attractor
 
@@ -38,7 +55,7 @@ section that is on wiki.
 Project was planned early on the beginning when I was creating wireframes with
 documentation and strategy.  I clearly see that this extra time spent early in
 project really helped after, when project was implemented. The organisation of the
-features and wireframes can be found on wiki page in[UX section](http://github.com/Migacz85/django_app/wiki/UX)
+features and wireframes can be found on wiki page in [UX section](http://github.com/Migacz85/django_app/wiki/UX)
 
 ## Writing automated tests:
 

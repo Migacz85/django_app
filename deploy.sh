@@ -250,8 +250,9 @@ fi
 
 # DEPLOYMENT 
 if [ $decision == 5 ]; then 
-	pip3 freeze --local > requirements.txt
-	coverage run --source=Home manage.py test
+        
+	pip3 freeze --local > requirements.txt 
+        coverage run manage.py test
 	coverage html 
 	git push 
 fi
