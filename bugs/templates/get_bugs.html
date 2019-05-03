@@ -1,15 +1,26 @@
 {% extends 'base.html' %}
 {% block form %}
 <div class="mr-auto">
-  <a href="{% url 'new_bug' %}" type="button" 
-    class="btn btn-primary float-right">Add new {{ issue_name }}
+  <a href="{% url 'new_bug' %}" type="button" class="btn btn-primary float-right">Add new {{ issue_name }}
     {% if issue_name == 'bugs' %}
     <i class="fa fa-bug"></i>
-    {% else  %}
+    {% else %}
     <i class="fa fa-bolt"></i>
     {% endif %}
   </a>
   <h2 class="mb-5">Current list of {{ issue_name }}</h2>
+</div>
+
+  {% if issue_name == 'bugs' %}
+  <div class="col"><img style="height: 80px" src="https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.pngmart.com%2Ffiles%2F6%2FAnt-PNG-Picture.png&f=1" alt=""></div>
+  <div style="clear: both">
+  {% endif %}
+  {% if issue_name == 'features' %}
+  <div class="col"><img style="height: 80px" src="https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.lighthouseconferencing.com%2Fwp-content%2Fuploads%2F2015%2F08%2FAdditional-features-Document-comparison-and-questionnaires.png&f=1" alt=""></div>
+  <div style="clear: both">
+  {% endif %}
+
+
 </div>
 {% for bug in bugs %}
 {{ comments }}
@@ -19,9 +30,9 @@
     {% endif %}
     <div class="col-lg-12 p-3">
       <span class="float-left mr-2">
-        {% ifequal bug.status "('Waiting', 'Waiting')" %}
-        <div class="badge badge-secondary">Wating</div>
-        {% endifequal %}
+        {% if bug.status == "Waiting" %}
+        <div class="badge badge-secondary">Wating</div> {% endif %}
+
         {% ifequal bug.status "In progress" %}
         <div class="badge badge-warning">In progress</div>
         {% endifequal %}
@@ -29,22 +40,22 @@
         <div class="badge badge-success">Completed</div>
         {% endifequal %}
       </span>
-        <div class="ml-1 float-right">
+      <div class="ml-1 float-right">
         {{ bug.upvotes}} <i class="fa fa-hand-paper-o"></i></div>
       <b><a href=" {% url 'get_bug_detail' bug.id %} "> {{bug.title}} </a></b>
       <br>
-    {% if issue_name == 'bugs' %}
-    <i class="fa fa-bug"></i>
-    {% else  %}
-    <i class="fa fa-bolt"></i>
-    {% endif %}
+      {% if issue_name == 'bugs' %}
+      <i class="fa fa-bug"></i>
+      {% else %}
+      <i class="fa fa-bolt"></i>
+      {% endif %}
       {{ bug.id }}
       Opened on:
       <i>{{ bug.created_date }}</i>
       by
       <i>{{ bug.username }}</i>
       <div class="float-right">
-        {{bug.views}} <i class="fa fa-eye"></i> 
+        {{bug.views}} <i class="fa fa-eye"></i>
       </div>
     </div>
     {% if forloop.counter0|divisibleby:2 %}
@@ -75,5 +86,5 @@
   </ul>
 </nav>
 
-
 {% endblock form %}
+

@@ -4,7 +4,7 @@ from django.utils import timezone
 
 
 class Issues(models.Model):
-    """ A Single Bug model"""
+    """ A Single Issue model"""
 
     STATUS_CHOICES = (
         ('Waiting', 'Waiting'),
@@ -27,7 +27,7 @@ class Issues(models.Model):
     )
     status = models.CharField(
         max_length=50, choices=STATUS_CHOICES,
-        default=('Waiting', 'Waiting')
+        default='Waiting'
     )
 
     content = models.TextField()
