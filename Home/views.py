@@ -7,7 +7,6 @@ from Home.forms import UserLoginForm, UserRegistrationForm
 
 def home(request):
     """Home page"""
-
     return render(request, 'home.html')
 
 

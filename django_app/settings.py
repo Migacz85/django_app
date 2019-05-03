@@ -3,14 +3,12 @@ For more information on this file, see
 https://docs.djangoproject.com/en/2.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.1/ref/settings/
+See deployment tips:
+https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 """
 
 import os
 import dj_database_url
-# from whitenoise.django import DjangoWhiteNoise
-
-# import django_heroku
-# django_heroku.settings(locals())
 
 if 'DEVELOPMENT' in os.environ:
     if os.environ.get('DEVELOPMENT') == 'true' or 1:
@@ -23,11 +21,8 @@ else:
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on  in production!
@@ -85,13 +80,8 @@ TEMPLATES = [
     },
 ]
 
-# os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'bootcamp.settings')
-
 WSGI_APPLICATION = 'django_app.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 # If You are developing locally use db.sqlite, on server use server db
 # Note: your local system should have env variable DEVELOPMENT=1
@@ -108,6 +98,7 @@ else:
             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         }
     }
+
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
 
@@ -129,6 +120,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
+
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 USE_I18N = True

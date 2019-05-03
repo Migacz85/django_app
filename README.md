@@ -27,7 +27,7 @@ as well with [guidelines](http://github.com/Migacz85/django_app/wiki/Guidelines)
 and [checklist](http://github.com/Migacz85/django_app/wiki/Checklist) that was 
 required from Code institute to build this project can be found in the links of
 wiki of this project. And all detailed information are there. This file is just a simplified version
-of whole documentation. 
+of whole documentation that is showing a bigger picture in smaller form.
 
 ## Implemented features 
 
@@ -55,9 +55,9 @@ section that is on wiki.
 Project was planned early on the beginning when I was creating wireframes with
 documentation and strategy.  I clearly see that this extra time spent early in
 project really helped after, when project was implemented. The organisation of the
-features and wireframes can be found on wiki page in [UX section](http://github.com/Migacz85/django_app/wiki/UX)
+features to be implemented and wireframes can be found on wiki page in [UX section](http://github.com/Migacz85/django_app/wiki/UX)
 
-## Writing automated tests:
+## Testing 
 
 Users stories and functional specification were converted to manual and automated 
 tests and can be found in [testing](http://github.com/Migacz85/django_app/wiki/Testing)
@@ -68,16 +68,15 @@ section of wiki page.
 If you want to improve this project or build something else on it, 
 
 1. Simply clone this repo first in your virtual environment,
-2. Set your environmental variables that are in `secrets.sh` and install requirements,
+2. [Set your secrets.sh](#https://github.com/Migacz85/django_app/wiki/Setup-your-secrets) and install requirements,
 4. Run `source deploy.sh` script that is in repository and choose third option.
 
 The really detailed steps can be found of course on wiki in section [developing this project](http://github.com/Migacz85/django_app/wiki/Start-developing-this-project) 
 
 ## Deployment on external servers (like heroku)
 
-When you will have your project working locally and you will make some changes
-to this existing project you can upload your site to your external server(for
-example heroku).
+When you will have your project working locally with some changes 
+you can upload your site to your external server(for example heroku).
 
 You can do this using 2 methods, one manually clicking and setting up. Or
 simply use provided script `deploy.sh` and select second option. I recommend to
@@ -106,9 +105,17 @@ on wiki page
 
 ## Interesting errors I noticed during development
 
-Please check my: 
-* [Notes](http://github.com/Migacz85/django_app/wiki/Notes)
+Because I was developing on linux and I had latest Python, I discovered
+issues with version that was showed in the course. I tested lot of different
+versions Django but only the latest one was working without any warnings.
+Please check my additional [notes](http://github.com/Migacz85/django_app/wiki/Notes)
+that i attached to this project.
 
 ## Credits
+-  My mentor Moosa Hassan 
+-  Thank you for helping with travis integration to: 
+  @teraspora
+-  Great thanks to @robinz_alumni from slack channel for a lot of voluntary help
+- Thank you to my teachers and people from slack channel
+-  @NielMc, @aaronsnig501, @lechien73, @nazarja, @10xOXR, @Sonnerz, @Wings30306 
 
-* [Credits](http://github.com/Migacz85/django_app/wiki/Credits)

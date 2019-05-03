@@ -45,22 +45,6 @@ class TestRegistration(TestCase):
 
         self.assertEqual(str(user), "user")
 
-    # def test_same_username_can_not_register(self):
-    #     self.user = User.objects.create_user(username='user123',
-    #                                          email='user@test.com',
-    #                                          password='testtest')
-    #     self.user.save()
-    #     self.client.post('/accounts/logout/')
-    #     response = self.client.post('/accounts/register/',
-    #                                 {
-    #                                     'username': 'user123',
-    #                                     'email': 'user@test.com',
-    #                                     'password1': 'testtest',
-    #                                     'password2': 'testtest'
-    #                                 })
-    #     self.assertIn('A user with that username already exists.',
-    #                   str(response.content))
-
 
 class TestLogin(TestCase):
 
