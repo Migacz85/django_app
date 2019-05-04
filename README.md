@@ -32,19 +32,44 @@ of whole documentation that is showing a bigger picture in smaller form.
 
 ## Implemented features 
 
-1.  Upvoting bugs 
-2.  Upvoting feature requests
-	- To upvote a feature request, users need to pay 
-3. Creating tickets, 
+### For users:
+
+1.  Upvoting button allows regular user to add/remove vote to bug or feature by simply clicking on it.
+	- To upvote a feature request, users need to pay
+2. Create ticket button allows regular user to add bug or feature by clicking on it.
 4. Comments on tickets, 
-5. Showing the status of the ticket  
+5. Each ticket is showing the status of the ticket so the user knows in what state it is.
 	1. to do,
 	2. doing, 
 	3. done.
-6. Cart with checkout and payment
-7. Authentication of the users
-8. Resetting passwords by email
-9. Pagination for comments and issues
+6. Cart with checkout and payment allows user to add vote features to the cart so he can after pay for them.
+7. Authentication of the users allows regular user to set up account and gain access to creating issues and creating comments.
+8. Resetting passwords allows regular user in case when he forget his password so he will be emailed with link for the page to reset the password.
+9. If the number of comments or issues grow above 5 pagination for comments and issues will be turned on so users can navigate in content more easily.
+10. When creating an issue user can add image so other users will understand better what he want to explain.
+
+### For Admins of the site:
+
+1. Admin can set up state of the ticket by logging in to admin panel so he can indicate to the user in what state current issue is. 
+2. Admin have separately `Bugs` and `Feature` section so he can easily navigate to the Features that are paid from the users.
+3. Admin can change everything what is on webpage by admin page. 
+
+### For Developers:
+
+1. Project is configured to store Images on external aws s3 server so service can grow to big sizes and this will be cost effective to store huge amount of data.
+2. Project logic is configured to be executed on heroku servers so it will be not disrupted to store data from the users.
+3. Project have integrated `deploy.sh` scripts so it will help developers with:
+    1. Creating new Django project
+    2. Creating new remote repository on heroku and setup there all necessary environmental variables and settings.
+    3. Creating local environment, and setup useful productivity aliases when developing in Django to speed up process of:
+        - `r` running the server
+        - `m` making migrations 
+        - `sa` starting new django application
+        - `s` creating super user
+        - `v` entering virtual environment
+        - `s3sync` synchronising static files with s3 server
+    4. Setting environmental variables on heroku
+    5. Updating coverage and pushing 
 
 ## Not implemented features
 
@@ -64,7 +89,7 @@ documentation and strategy.  I clearly see that this extra time spent early in
 project really helped after, when project was implemented. The organisation of the
 features to be implemented and wireframes can be found on wiki page in [UX section](http://github.com/Migacz85/django_app/wiki/UX)
 
-## Testing 
+## Testing & Bugs
 
 Users stories and functional specification were converted to manual and automated 
 tests and can be found in [testing](http://github.com/Migacz85/django_app/wiki/Testing)

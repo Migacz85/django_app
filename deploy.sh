@@ -12,7 +12,7 @@
 #    ██║   ╚██████╔╝╚██████╔╝███████╗███████║
 #    ╚═╝    ╚═════╝  ╚═════╝ ╚══════╝╚══════╝
 ############################################ 
-# In order to run this script you need to have dependecies like:
+# In order to run first option in this script you need to have dependecies like:
 # git, heroku, sed
 echo "Warning: Please run this only in root folder of your project"
 echo "|========================================"
@@ -50,6 +50,7 @@ echo "|This will: "
 echo "|- run tests"
 echo "|- update coverage html"
 echo "|- update python dependency requirements "  
+echo "|- make commit and push changes on remote server"  
 echo "|Choose 1 or 2 or 3 or 4 or 5?"
 
 decision='n'
