@@ -91,6 +91,7 @@ if [ $decision == 3 ]; then
     echo "sa - django-admin startapp"
     echo "s - create super user"
     echo "v - enter virtual env"
+    echo "s3sync - sync static files with your aws s3 server"
 
     alias r="python manage.py runserver localhost:$port"
     alias m="python manage.py makemigrations && python manage.py migrate"

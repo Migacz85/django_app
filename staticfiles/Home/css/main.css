@@ -1,19 +1,45 @@
+/* USE BEM METHODOLOGY WHILE CREATING CSS CLASSES */
+
+/* BLOCK */
+/* Standalone entity that is meaningful on its own. */
+/* Examples */
+/* header, container, menu, checkbox, input */
+
+/* ELEMENT */
+/* A part of a block that has no standalone meaning and is semantically tied to its block. */
+/* Examples */
+/* menu item, list item, checkbox caption, header title */
+
+/* MODIFIER */
+/* A flag on a block or element. Use them to change appearance or behavior. */
+/* Examples */
+/* disabled, highlighted, checked, fixed, size big, color yellow */
+
+/* BEM CLASS EXAMPLE */
+
+/* .button { */
+/* 	display: inline-block; */
+/* 	border-radius: 3px; */
+/* 	padding: 7px 12px; */
+/* 	border: 1px solid #D5D5D5; */
+/* 	background-image: linear-gradient(#EEE, #DDD); */
+/* 	font: 700 13px/18px Helvetica, arial; */
+/* } */
+/* .button--state-success { */
+/* 	color: #FFF; */
+/* 	background: #569E3D linear-gradient(#79D858, #569E3D) repeat-x; */
+/* 	border-color: #4A993E; */
+/* } */
+/* .button--state-danger { */
+/* 	color: #900; */
+/* } */
+
 body {
   position: relative;
   margin: 0;
   padding-bottom: 6rem;
   min-height: 100vh;
   font-family: "Helvetica Neue", Arial, sans-serif;
-	
-}
-
-.footer {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  padding: 1rem;
-  text-align: center;
 }
 
 img {max-width: 90%;}
@@ -24,4 +50,23 @@ header {
 
 section {
   padding: 150px 0;
+}
+
+
+.footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  text-align: center;
+}
+
+
+/* Phones */
+@media only screen and (max-width: 700px) {
+section {
+  padding: 80px 0;
+}
+
 }

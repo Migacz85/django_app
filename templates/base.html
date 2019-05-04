@@ -6,7 +6,7 @@
   <meta name="description" content="{% block description %}{% endblock %} ">
   <meta name="keywords" content="{% block keywords %}{% endblock %} ">
   <meta name="author" content="{% block author %}{% endblock %} ">
-  <meta name="viewport" content="width=, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>{% block title %}{% endblock %}</title>
@@ -16,6 +16,7 @@
   <link href="{% static 'Home/css/main.css' %}" rel="stylesheet">
   <!-- Icons -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" media="all">
+  <script type="text/javascript" src="http://kozea.github.com/pygal.js/latest/pygal-tooltips.min.js"></script>
 </head>
 <body id="page-top" class="bg-light">
   {% include 'navigation.html' %}
@@ -59,7 +60,5 @@
 <script src="{% static 'Home/vendor/js/bootstrap.bundle.min.js' %}"></script>
 <!-- Plugin JavaScript -->
 <script src="{% static 'Home/vendor/jquery-easing/jquery.easing.min.js' %}"></script>
-<!-- Custom JavaScript -->
-<script src="{% static 'Home/js/main.css' %}"></script>
 {% block head_js %} {% endblock head_js %}
 </html>
