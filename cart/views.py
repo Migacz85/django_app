@@ -10,6 +10,7 @@ def view_cart(request):
     return render(request, "cart.html", {"simple_form": 1})
 
 
+@login_required
 def add_to_cart(request, id):
     """ Add a feature ticket to the cart"""
     quantity = int(request.POST.get('quantity'))

@@ -247,7 +247,8 @@ if [ $decision == 4 ]; then
     heroku config:set EMAIL_USER=$EMAIL_USER
     heroku config:set EMAIL_PASSWORD=$EMAIL_PASSWORD
     echo "Setting environment variables on remote server"
-    heroku config:set DEVELOPMENT=0
+    heroku config:set STRIPE_SECRET=$STRIPE_SECRET
+    heroku config:set STRIPE_PUBLISHABLE=$STRIPE_PUBLISHABLE
     echo "done" 
 fi
 

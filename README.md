@@ -6,9 +6,13 @@
 
 - [Unicorn Attractor](#unicorn-attractor)
   - [Implemented features](#implemented-features)
+    - [For users](#for-users)
+    - [For Admins of the site](#for-admins-of-the-site)
+    - [For Developers](#for-developers)
+  - [Not implemented features](#not-implemented-features)
   - [Technologies used](#technologies-used)
   - [UX](#ux)
-  - [Writing automated tests:](#writing-automated-tests)
+  - [Testing & Bugs](#testing--bugs)
   - [Developing this project](#developing-this-project)
   - [Deployment on external servers (like heroku)](#deployment-on-external-servers-like-heroku)
   - [Quick new Django project](#quick-new-django-project)
@@ -32,7 +36,7 @@ of whole documentation that is showing a bigger picture in smaller form.
 
 ## Implemented features 
 
-### For users:
+### For users
 
 1.  Upvoting button allows regular user to add/remove vote to bug or feature by simply clicking on it.
 	- To upvote a feature request, users need to pay
@@ -48,13 +52,13 @@ of whole documentation that is showing a bigger picture in smaller form.
 9. If the number of comments or issues grow above 5 pagination for comments and issues will be turned on so users can navigate in content more easily.
 10. When creating an issue user can add image so other users will understand better what he want to explain.
 
-### For Admins of the site:
+### For Admins of the site
 
 1. Admin can set up state of the ticket by logging in to admin panel so he can indicate to the user in what state current issue is. 
 2. Admin have separately `Bugs` and `Feature` section so he can easily navigate to the Features that are paid from the users.
 3. Admin can change everything what is on webpage by admin page. 
 
-### For Developers:
+### For Developers
 
 1. Project is configured to store Images on external aws s3 server so service can grow to big sizes and this will be cost effective to store huge amount of data.
 2. Project logic is configured to be executed on heroku servers so it will be not disrupted to store data from the users.
