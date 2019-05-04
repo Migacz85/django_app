@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Issues
+from .models import Issues, IssueUpvote
 
 
 class BugAdmin(admin.ModelAdmin):
@@ -26,3 +26,4 @@ class FeatureAdmin(BugAdmin):
 
 admin.site.register(Bugs, BugAdmin)
 admin.site.register(Feature, FeatureAdmin)
+admin.site.register(IssueUpvote)

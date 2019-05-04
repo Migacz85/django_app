@@ -34,6 +34,13 @@ required from Code institute to build this project can be found in the links of
 wiki of this project. And all detailed information are there. This file is just a simplified version
 of whole documentation that is showing a bigger picture in smaller form.
 
+If you want to see how admin panel is implemented here is account to test it:
+
+login: test_account
+password: 1Testthis
+
+Its only allowed to change ticket status and see what is in admin page.
+
 ## Implemented features 
 
 ### For users
