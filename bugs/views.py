@@ -2,10 +2,10 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from .models import Issues, IssueUpvote, Comments
 from .forms import BugForm, CommentForm
-from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django_app.settings import host_images_link
+from django.contrib.auth.models import User
 
 
 def get_bugs(request):
@@ -50,20 +50,21 @@ def get_issue_detail(request, pk):
     """
     comments = Comments.objects.filter(ticket=pk).order_by('created_date')
     paginator = Paginator(comments, 5)
-
     page = request.GET.get('page')
     comments = paginator.get_page(page)
 
     issue = get_object_or_404(Issues, pk=pk)
-
     upvote = IssueUpvote.objects.filter(upvoted_bug=issue)
+    upvoted = False
 
-    upvoted=False
-    if str(upvote) == '<QuerySet []>':
-        upvoted = False
-    else:
-        upvoted = True
+    try:
+        user = User.objects.get(username=request.user)
+    except BaseException:
+        user = None
 
+    for item in upvote:
+        if str(item) == str(user):
+            upvoted = True
 
     """Is issue actuall in cart? """
     id = pk
@@ -101,9 +102,9 @@ def create_or_edit_issue(request, pk=None):
         return render(
             request, 'create_or_edit_bug.html',
             {
-            'form': form, 'title': title,
-             "simple_form": 1,
-             }
+                'form': form, 'title': title,
+                "simple_form": 1,
+            }
         )
 
 
@@ -121,7 +122,7 @@ def add_comment_issue(request, pk=None):
     title = "Add comment"
     return render(request, "create_or_edit_bug.html",
                   {'form': c, 'title': title,
-                    "simple_form": 1,
+                   "simple_form": 1,
                    })
 
 
@@ -135,7 +136,17 @@ def upvote_issue(request, pk=None):
     issue = get_object_or_404(Issues, pk=pk)
     upvote = IssueUpvote.objects.filter(upvoted_bug=issue)
 
-    if str(upvote) == '<QuerySet []>':
+    try:
+        user = User.objects.get(username=request.user)
+    except BaseException:
+        user = None
+
+    upvoted = False
+    for item in upvote:
+        if str(item) == str(user):
+            upvoted = True
+
+    if not upvoted:
         try:
             u = get_object_or_404(
                 IssueUpvote, upvoted_bug=issue, user=request.user)
