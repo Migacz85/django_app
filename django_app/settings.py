@@ -145,16 +145,15 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
-# ENVIRONMENTAL VARIABLES
+# GET ENVIRONMENTAL VARIABLES
 EMAIL_HOST_USER = os.environ.get('EMAIL_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')
 STRIPE_PUBLISHABLE = os.getenv('STRIPE_PUBLISHABLE')
 STRIPE_SECRET = os.getenv('STRIPE_SECRET')
-AWS_STORAGE_BUCKET_NAME = 'unicorn2'
-AWS_S3_REGION_NAME = 'us-east-1'
 AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
-AWS_S3_CUSTOM_DOMAIN = AWS_STORAGE_BUCKET_NAME + '.s3.amazonaws.com'
+AWS_STORAGE_BUCKET_NAME =  os.environ.get('AWS_SECRET_BUCKET_NAME')
+AWS_S3_CUSTOM_DOMAIN = str(AWS_STORAGE_BUCKET_NAME) + '.s3.amazonaws.com'
 
 MEDIAFILES_LOCATION = 'media'
 MEDIA_URL = '/media/'
@@ -163,18 +162,18 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Use AMAZON S3 only on remote server
 # And on localhost use local staticfiles
 if not development:
-    STATICFILES_LOCATION = "staticfiles"
-    STATICFILES_STORAGE = "custom_storages.StaticStorage"
+    STATICFILES_LOCATION = 'staticfiles'
+    STATICFILES_STORAGE = 'custom_storages.StaticStorage'
     DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-    host_images_link = 'https://' + AWS_S3_CUSTOM_DOMAIN + "/media/"
+    host_images_link = 'https://' + AWS_S3_CUSTOM_DOMAIN + str(MEDIA_URL)
 else:
-    STATICFILES_LOCATION = "staticfiles"
+    STATICFILES_LOCATION = 'staticfiles'
     STATIC_URL = '/staticfiles/'
     STATICFILES_DIRS = [
         os.path.join(BASE_DIR, 'staticfiles'),
     ]
-    host_images_link = 'http://' + os.environ.get('HOSTNAME') + ':' + os.environ.get('PORT') + MEDIA_URL
+    host_images_link = 'http://' + os.environ.get('HOSTNAME') + ':' + os.environ.get('PORT') + str(MEDIA_URL)
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
