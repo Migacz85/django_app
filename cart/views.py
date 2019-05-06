@@ -15,10 +15,6 @@ def add_to_cart(request, id):
     """ Add a feature ticket to the cart"""
     quantity = int(request.POST.get('quantity'))
 
-    # issues = get_object_or_404(Issues, id=id)
-    # issues.views -= 1
-    # issues.save()
-
     cart = request.session.get('cart', {})
     cart[id] = cart.get(id, quantity)
     cart[id] = quantity

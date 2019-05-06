@@ -15,13 +15,10 @@ def checkout(request):
        error is returned  """
 
     if request.method == "POST":
-
         payment_form = MakePaymentForm(request.POST)
-
         if payment_form.is_valid():
             cart = request.session.get('cart', {})
             total = 0
-
             for id, quantity in cart.items():
                 total += quantity * 10
             try:
@@ -55,7 +52,10 @@ def checkout(request):
 
 @login_required
 def cart_success(request):
-    """Upvote all items in cart and clear cart"""
+    """Upvote all items in cart and clear cart.
+    Even if the item was upvoted before from same user
+    - one point still will be added.
+    """
 
     cart = request.session.get('cart', {})
     upvote_list = []
