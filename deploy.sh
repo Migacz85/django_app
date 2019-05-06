@@ -70,7 +70,7 @@ if [ $decision == 3 ]; then
     export PORT=$port
     # If you will want to connect locally to external db:
     # unset DATABASE_URL
-    export DATABASE_URL='postgres://qkstunpbcqehkk:01159572c3775a94c96eaa7e4665b94375046d2c53491b602d4ae6a2e7834994@ec2-79-125-2-142.eu-west-1.compute.amazonaws.com:5432/dd37t2r0frb70k'
+    # export DATABASE_URL='postgres://qkstunpbcqehkk:01159572c3775a94c96eaa7e4665b94375046d2c53491b602d4ae6a2e7834994@ec2-79-125-2-142.eu-west-1.compute.amazonaws.com:5432/dd37t2r0frb70k'
 
     # Create new secret key if is not present
 	if [ ! -f secret.key ]; then
@@ -84,6 +84,7 @@ if [ $decision == 3 ]; then
     alias sa="python manage.py startapp"	
     alias s="python manage.py createsuperuser"	
     alias s3sync="aws s3 sync --acl public-read --sse --delete staticfiles s3://$AWS_STORAGE_BUCKET_NAME/staticfiles"
+    alias pfl="pip3 freeze --local > requirements.txt"
     echo "" 
     if [[ secrets -eq 1 ]]; then
       echo "Your environmental variables are as follow:"
