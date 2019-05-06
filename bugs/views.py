@@ -65,7 +65,6 @@ def get_issue_detail(request, pk):
     for item in upvote:
         if str(item) == str(user):
             upvoted = True
-
     """Is issue actuall in cart? """
     id = pk
     cart = request.session.get('cart', {})
@@ -80,7 +79,9 @@ def get_issue_detail(request, pk):
                    'host_images_link': host_images_link,
                    'simple_form': 1,
                    'in_cart': in_cart,
-                   'upvoted': upvoted}
+                   'upvoted': upvoted,
+                   'issue_name': issue.issue_type,
+                   }
                   )
 
 
