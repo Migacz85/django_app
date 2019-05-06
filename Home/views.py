@@ -3,10 +3,15 @@ from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from Home.forms import UserLoginForm, UserRegistrationForm
-
+from bugs.models import Issues
 
 def home(request):
     """Home page"""
+
+    issue = Issues.objects.filter(
+        issue_type='Feature'
+    ).order_by('-published_date')
+
     return render(request, 'home.html')
 
 

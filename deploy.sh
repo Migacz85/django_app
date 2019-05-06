@@ -63,12 +63,14 @@ if [ $decision == 3 ]; then
     username="Migacz85" # Github login
     secrets=0 # Show value of environmental variables (with secrets)?
 
-    export DEVELOPMENT=1
+    unset DEVELOPMENT
+    # export DEVELOPMENT=0
+    
     export HOSTNAME='localhost' 
     export PORT=$port
     # If you will want to connect locally to external db:
     # unset DATABASE_URL
-    # export DATABASE_URL='postgres://qkstunpbcqehkk:01159572c3775a94c96eaa7e4665b94375046d2c53491b602d4ae6a2e7834994@ec2-79-125-2-142.eu-west-1.compute.amazonaws.com:5432/dd37t2r0frb70k'
+    export DATABASE_URL='postgres://qkstunpbcqehkk:01159572c3775a94c96eaa7e4665b94375046d2c53491b602d4ae6a2e7834994@ec2-79-125-2-142.eu-west-1.compute.amazonaws.com:5432/dd37t2r0frb70k'
 
     # Create new secret key if is not present
 	if [ ! -f secret.key ]; then
@@ -248,14 +250,15 @@ if [ $decision == 4 ]; then
     echo	"$rand" > secret2.key
 	fi
     export SECRET_KEY2=$(<secret2.key)
+    echo "Setting environment variables on remote server"
     heroku config:set SECRET_KEY="$SECRET_KEY2"
     heroku config:set AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
     heroku config:set AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
     heroku config:set EMAIL_USER=$EMAIL_USER
     heroku config:set EMAIL_PASSWORD=$EMAIL_PASSWORD
-    echo "Setting environment variables on remote server"
     heroku config:set STRIPE_SECRET=$STRIPE_SECRET
     heroku config:set STRIPE_PUBLISHABLE=$STRIPE_PUBLISHABLE
+    heroku config:set AWS_STORAGE_BUCKET_NAME=$AWS_STORAGE_BUCKET_NAME  
     echo "done" 
 fi
 

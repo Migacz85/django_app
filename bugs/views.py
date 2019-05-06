@@ -33,6 +33,7 @@ def get_features(request):
         published_date__lte=timezone.now(),
         issue_type='Feature'
     ).order_by('-published_date')
+
     paginator = Paginator(issue, 5)
     page = request.GET.get('page')
     issue = paginator.get_page(page)
