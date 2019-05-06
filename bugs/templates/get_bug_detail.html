@@ -36,7 +36,7 @@
 <div class="card mt-4">
   <div class="card-header">
     <span class="float-left mr-2">
-      {% ifequal bug.status "('Waiting', 'Waiting')" %}
+      {% ifequal bug.status "Waiting" %}
       <div class="badge badge-secondary">Wating</div>
       {% endifequal %}
       {% ifequal bug.status "In progress" %}
@@ -88,7 +88,9 @@
     <a href="{% url 'add_comment_bugs' bug.id  %}" class="text-white"> Add comment </a>
   </div>
   <div class="btn btn-secondary float-left mt-2">
-    {% if issue_name == 'bugs'%}
+
+    {% if issue_name == 'Feature' %}
+
     <a href="{% url 'get_features' %}" class="text-white">Go back to features list</a>
     {% else %}
     <a href="{% url 'get_bugs' %}" class="text-white">Go back to bug list</a>
