@@ -58,55 +58,64 @@ read decision
 
 # LOCALHOST
 if [ $decision == 3 ]; then
-    port=5000
-    username="Migacz85"
+    clear
+    port=5000 # Port number on localhost
+    username="Migacz85" # Github login
+    secrets=0 # Show value of environmental variables (with secrets)?
 
+    export DEVELOPMENT=1
+    export HOSTNAME='localhost' 
+    export PORT=$port
     # If you will want to connect locally to external db:
     # unset DATABASE_URL
     # export DATABASE_URL='postgres://qkstunpbcqehkk:01159572c3775a94c96eaa7e4665b94375046d2c53491b602d4ae6a2e7834994@ec2-79-125-2-142.eu-west-1.compute.amazonaws.com:5432/dd37t2r0frb70k'
 
     # Create new secret key if is not present
 	if [ ! -f secret.key ]; then
-		rand="$( strings /dev/urandom | tr -d '\n' |  tr -d ' '  | head -c50 )" 
-    echo	"$rand" > secret.key
-	fi
-    export DEVELOPMENT=1
-    export HOSTNAME='localhost' 
-    export PORT=$port
-    echo "Your temporary environmental variables are as follow:"
-    echo "" 
-    echo "DEVELOPMENT - " $DEVELOPMENT
-    echo "HOSTNAME -"	$HOSTNAME	
-    echo "SECRET_KEY -" $SECRET_KEY
-    echo "DATABASE_URL -" $DATABASE_URL 	
-    echo " " 
+            rand="$( strings /dev/urandom | tr -d '\n' |  tr -d ' '  | head -c50 )" 
+            echo "$rand" > secret.key
+        fi
     source secret.sh # Keeping secret env variables here
-    echo "Secrets: "  
-    echo "AWS_ACCESS_KEY_ID" $AWS_ACCESS_KEY_ID
-    echo "AWS_SECRET_ACCESS_KEY" $AWS_SECRET_ACCESS_KEY
-    echo "SECRET_KEY" $SECRET_KEY
-    echo " "	
-    echo "Following aliasses are avaliable:" 
-    echo "r - run the server again"
-    echo "m - make migrations"
-    echo "sa - django-admin startapp"
-    echo "s - create super user"
-    echo "v - enter virtual env"
-    echo "s3sync - sync static files with your aws s3 server"
-
     alias r="python manage.py runserver localhost:$port"
     alias m="python manage.py makemigrations && python manage.py migrate"
     alias v="source venv/bin/activate"	
     alias sa="python manage.py startapp"	
     alias s="python manage.py createsuperuser"	
     alias s3sync="aws s3 sync --acl public-read --sse --delete staticfiles s3://$AWS_STORAGE_BUCKET_NAME/staticfiles"
-
+    echo "" 
+    if [[ secrets -eq 1 ]]; then
+      echo "Your environmental variables are as follow:"
+      echo "--------------------------------------------------"
+      echo "AWS_STORAGE_BUCKET_NAME"  $AWS_STORAGE_BUCKET_NAME
+      echo "AWS_S3_REGION_NAME"       $AWS_S3_REGION_NAME
+      echo "AWS_ACCESS_KEY_ID"        $AWS_ACCESS_KEY_ID
+      echo "AWS_SECRET_ACCESS_KEY"    $AWS_SECRET_ACCESS_KEY
+      echo "EMAIL_USER"               $EMAIL_USER
+      echo "EMAIL_PASSWORD"           $EMAIL_PASSWORD
+      echo "SECRET_KEY"               $SECRET_KEY
+      echo "STRIPE_PUBLISHABLE"       $STRIPE_PUBLISHABLE
+      echo "STRIPE_SECRET"            $STRIPE_SECRET
+      echo "--------------------------------------------------"
+    fi
+    echo " " 
+    echo "Following aliasses are avaliable:" 
+    echo "--------------------------------------------------"
+    echo "r - run the server again"
+    echo "m - make migrations"
+    echo "sa - django-admin startapp"
+    echo "s - create super user"
+    echo "v - enter virtual env"
+    echo "s3sync - sync static files with your aws s3 server"
+    echo "Type 'deactivate' to quit virutal env"
+    echo "--------------------------------------------------"
     echo ""
-    echo "virtual environment init"
+    echo "Virtual environment init... "
     python -m venv venv 
     source venv/bin/activate
-    echo "Type 'deactivate' to quit virutal env"
+    echo "Starting Django server... " 
+    echo "--------------------------------------------------"
     echo "" 
+    
     python manage.py runserver localhost:$port
 fi
 
@@ -120,8 +129,6 @@ if [ $decison == 1 ]; then
     export SECRET_KEY=$(<secret.key)
     export HOSTNAME='localhost'
     echo "Give your project name"
-    echo ""
-    echo "Note: Name must start with a letter, end with a letter" 
     echo "or digit and can only contain lowercase letters, digits, and dashes."
     read project_name
     echo "Install dependencies with django" 
@@ -259,7 +266,7 @@ if [ $decision == 5 ]; then
       coverage run --omit='*migrations*' --source=Home,cart,bugs,charts,checkout manage.py test
       coverage report
 
-      echo "Built html coverage and push it on github? y/n"
+      echo "Build html coverage and push it on github? y/n"
       read decision
       if [ $decision == y ]; then 
       coverage html 
