@@ -85,6 +85,7 @@ if [ $decision == 3 ]; then
     alias s="python manage.py createsuperuser"	
     alias s3sync="aws s3 sync --acl public-read --sse --delete staticfiles s3://$AWS_STORAGE_BUCKET_NAME/staticfiles"
     alias pfl="pip3 freeze --local > requirements.txt"
+
     echo "" 
     if [[ secrets -eq 1 ]]; then
       echo "Your environmental variables are as follow:"

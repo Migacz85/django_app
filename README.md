@@ -39,13 +39,12 @@ If you want to see how admin panel is implemented here is account to test it:
 login: test_account
 password: 1Testthis
 
-Its only allowed to change ticket status and see what is in admin page.
 
 ## Implemented features 
 
 ### For users
 
-1.  Upvoting button allows regular user to add/remove vote to bug or feature by simply clicking on it.
+1. Upvoting button allows regular user to add/remove vote to bug or feature by simply clicking on it.
 	- To upvote a feature request, users need to pay
 2. Create ticket button allows regular user to add bug or feature by clicking on it.
 4. Comments on tickets, 

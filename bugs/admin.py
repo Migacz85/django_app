@@ -17,7 +17,6 @@ class Bugs(Issues):
     class Meta:
         proxy = True
 
-
 class FeatureAdmin(BugAdmin):
 
     def get_queryset(self, request):
@@ -26,3 +25,4 @@ class FeatureAdmin(BugAdmin):
 
 admin.site.register(Bugs, BugAdmin)
 admin.site.register(Feature, FeatureAdmin)
+admin.site.register(IssueUpvote)

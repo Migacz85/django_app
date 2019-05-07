@@ -55,7 +55,9 @@ def cart_success(request):
     """Upvote all items in cart and clear cart.
     Even if the item was upvoted before from same user
     - one point still will be added.
-    """
+    TODO: double check if there was payment before calling,
+    this can be easy exploited by just calling link that is attached
+    to this view """
 
     cart = request.session.get('cart', {})
     upvote_list = []

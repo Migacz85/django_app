@@ -66,6 +66,7 @@ def get_issue_detail(request, pk):
     for item in upvote:
         if str(item) == str(user):
             upvoted = True
+
     """Is issue actuall in cart? """
     id = pk
     cart = request.session.get('cart', {})
@@ -131,9 +132,6 @@ def add_comment_issue(request, pk=None):
 @login_required
 def upvote_issue(request, pk=None):
     """View is adding or taking one vote for each issue"""
-    """TODO: double check if there was payment before calling,
-    this can be easy exploited by just calling link that is attached
-    to this view """
 
     issue = get_object_or_404(Issues, pk=pk)
     upvote = IssueUpvote.objects.filter(upvoted_bug=issue)

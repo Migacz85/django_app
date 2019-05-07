@@ -41,7 +41,6 @@ class TestRegistration(TestCase):
             'password2': 'testtest'
         })
         user = get_object_or_404(User, username="user")
-        print(response)
 
         self.assertEqual(str(user), "user")
 
