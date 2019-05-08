@@ -18,6 +18,7 @@
    <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Baloo+Bhai" rel="stylesheet">
 </head>
+
 <body id="page-top" class="bg-light bg-img">
   {% include 'navigation.html' %}
   {% for message in messages %}
@@ -57,6 +58,7 @@
 <!-- Bootstrap core JavaScript -->
 <script src="{% static 'Home/vendor/jquery/jquery.min.js' %}"></script>
 <script src="{% static 'Home/vendor/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'Home/js/custom.js' %}"></script>
 
 {% block head_js %} {% endblock head_js %}
 </html>

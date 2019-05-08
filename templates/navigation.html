@@ -30,22 +30,22 @@
       <ul class="navbar-nav ml-auto">
 
         <li><a class="nav-link" href=" {% url 'view_cart' %}"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart
-          {% if ticket_count > 0 %}
-          <label for="" class="badge badge-light">{{ ticket_count }}</label>
-          {% endif %}
-        </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'logout' %}">
-            <i class="fa fa-power-off"></i>
-            Logout
+            {% if ticket_count > 0 %}
+            <label for="" class="badge badge-light">{{ ticket_count }}</label>
+            {% endif %}
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">
-            <i class="fa fa-user"></i>
-            {{user}}
-          </a>
+        <li class="nav-item form-inline">
+          <div class="dropdown form-inline">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown">{{user}}
+              <span class="caret"></span></a>
+            <ul class="dropdown-menu ml-3">
+              <li class="ml-4"><a href="{% url 'logout' %}">
+                  <i class="fa fa-power-off"></i>
+                  Logout
+                </a></li>
+            </ul>
+          </div>
         </li>
       </ul>
       {% else %}

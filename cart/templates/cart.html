@@ -3,14 +3,14 @@
 {% load static from staticfiles %}
 {% load bootstrap_tags %}
 {% block form %}
-<h1>Your Cart</h1>
+<h1>Your cart</h1>
 {% if total != 0 %}
 {% if cart_items == '[]' %}
 <h1>empty</h1>
 {% endif %}
 <div class="card mt-5">
   <div class="card-header jenter">
-    <h4>Summary</h4>
+    Summary
   </div>
   <div class="card-body ">
     <table class='table table-small '>
@@ -69,10 +69,22 @@
 {% else %}
 <div class="card mt-5">
   <div class="card-header">
-    <h2>Summary</h2>
+   Summary
   </div>
   <div class="card-body">
-    <h4>You have nothing in your cart :-(</h4>
+    
+<div class="alert alert-warning" role="alert">
+  <h4 class="alert-heading">Nothing in cart!</h4>
+  <p>You have nothing in your cart yet. </p>
+  <hr>
+  <p class="mb-0">Try to navigate to features and maybe you will find
+  something you want to purchase ?</p>
+  <p>If you don't know already we are selling votes for features that will
+  be implemented in future.</p>
+  
+  <p class="mb-0"> Thank You for your support ! </p>
+</div>
+
   </div>
 </div>
 {% endif %}
