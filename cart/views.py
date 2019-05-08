@@ -22,6 +22,25 @@ def add_to_cart(request, id):
     return redirect(get_issue_detail, id)
 
 
+def add_one(request, id):
+    """Add one item extra"""
+    cart = request.session.get('cart', {})
+    if cart[id] > 0:
+        cart[id] = cart[id] + 1
+    request.session['cart'] = cart
+    return redirect(reverse('view_cart'))
+
+
+def remove_one(request, id):
+    """Add one item extra"""
+    cart = request.session.get('cart', {})
+    if cart[id] > 1:
+        cart[id] = cart[id] - 1
+
+    request.session['cart'] = cart
+    return redirect(reverse('view_cart'))
+
+
 def remove_ticket(request, id):
     """Removes a ticket from the cart page"""
     quantity = int(request.POST.get('quantity'))

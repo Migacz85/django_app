@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load mathfilters %}
 {% load static from staticfiles %}
 {% load bootstrap_tags %}
 {% block form %}
@@ -15,18 +16,32 @@
     <table class='table table-small '>
       <tr class='bottom-border'>
         <th>Your items</th>
+        <th>Number of votes</th>
         <th>Price</th>
-        <th>Delete</th>
+        <th>Action</th>
       </tr>
       {% for item in cart_items %}
       <tr>
         <td><a href=" {% url 'get_bug_detail' item.ticket.id %}">{{item.ticket.title}} </a></td>
-        <td><i class="fa fa-usd" aria-hidden="true"></i>{{item.price}}</td>
-        <td>
+        <td> {{ item.quantity }} </td>
+        <td>{{item.price|mul:item.quantity }} $</td>
+        <td class="form-inline">
+        <form class='ml-2 form-inline' method="post" action="{% url 'remove_one' item.id %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-warning text-white btn-sm form-inline">
+              <i class="fa fa-minus" aria-hidden="true"></i>
+            </button>
+          </form>
+        <form class='ml-2 form-inline' method="post" action="{% url 'add_one' item.id %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-warning text-white btn-sm form-inline ">
+              <i class="fa fa-plus" aria-hidden="true"></i>
+            </button>
+          </form>
           <form class='ml-2' method="post" action="{% url 'remove_ticket' item.id %}">
             {% csrf_token %}
             <input name='quantity' type="hidden" value="0">
-            <button type="submit" class="btn btn-primary  btn-sm">
+            <button type="submit" class="btn btn-danger text-white btn-sm form-inline">
               <i class="fa fa-trash" aria-hidden="true"></i>
             </button>
           </form>
@@ -42,7 +57,7 @@
   </div>
   {% else %}
   <div class="form-group float-right">
-    <h3 class="float-left ml-4">Total: {{ total }} <i class="fa fa-usd" aria-hidden="true"></i></h3>
+    <h3 class="float-left ml-4">Total: {{ total }} $ </h3>
     <a href="{% url 'checkout' %}" class="float-right btn btn-success mr-4" role="button">Checkout <i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
   </div>
   {% endif %}

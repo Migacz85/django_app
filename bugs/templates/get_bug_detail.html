@@ -6,13 +6,13 @@
 <form class='float-right' method="post" action="{% url 'remove_ticket_in_issue' bug.id %}">
   {% csrf_token %}
   <input type="hidden" name="quantity" value="0">
-  <button type='submit' class='btn btn-warning'>Your vote is in cart <i class="fa fa-dolar"></i></button>
+  <button type='submit' class='btn btn-warning text-white'>Your vote is in cart <i class="fa fa-dolar"></i></button>
 </form>
 {% else %}
 <form class='float-right' method="post" action="{% url 'add_to_cart' bug.id %}">
   {% csrf_token %}
   <input type="hidden" name="quantity" value="1">
-  <button type='submit' class='btn btn-warning'>Upvote {{ bug.upvotes }} 
+  <button type='submit' class='btn btn-warning text-white'>Upvote {{ bug.upvotes }} 
   
   {% if upvoted %}
   <i class="fa fa-hand-paper-o text-white"></i>
@@ -87,7 +87,7 @@
   <div class="btn btn-warning float-right mt-2">
     <a href="{% url 'add_comment_bugs' bug.id  %}" class="text-white"> Add comment </a>
   </div>
-  <div class="btn btn-secondary float-left mt-2">
+  <div class="btn btn-warning float-left mt-2">
 
     {% if issue_name == 'Feature' %}
 

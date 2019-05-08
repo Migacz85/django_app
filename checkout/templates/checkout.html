@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load bootstrap_tags %}
+{% load mathfilters %}:w
 {% load static from staticfiles %}
 {% block head_js %}
 <script type='text/javascript' src='https://js.stripe.com/v2/'></script>
@@ -21,19 +22,21 @@
         {{payment_form | as_bootstrap}}
       </div>
       <div class="card mt-5">
-        <div class="card-header jenter">
+        <div class="card-header jenter warning ">
           <h4>Summary</h4>
         </div>
         <div class="card-body ">
           <table class='table table-small '>
             <tr class='bottom-border'>
-              <th>Your items</th>
+              <th>Number of votes</th>
+              <th>Number of votes</th>
               <th>Price</th>
             </tr>
             {% for item in cart_items %}
             <tr>
               <td><a href=" {% url 'get_bug_detail' item.ticket.id %}">{{item.ticket.title}} </a></td>
-              <td><i class="fa fa-usd" aria-hidden="true"></i>{{item.price}}</td>
+              <td> {{ item.quantity }} </td>
+              <td>{{item.price|mul:item.quantity }} $</td>
             </tr>
             {% endfor %}
           </table>
@@ -45,7 +48,7 @@
         </div>
         {% else %}
         <div class="form-group float-right">
-          <h3 class="float-left ml-4">Total: {{ total }} <i class="fa fa-usd" aria-hidden="true"></i></h3>
+          <h3 class="float-left ml-4">Total: {{ total }} $ </h3>
           <button type='submit' class="btn btn-success float-right mr-4" id='submit_payment_btn'>Pay
             Now <i class="fa fa-credit-card" aria-hidden="true"></i></button>
         </div>
