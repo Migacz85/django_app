@@ -57,6 +57,7 @@ password: 1Testthis
 8. Resetting passwords allows regular user in case when he forget his password so he will be emailed with link for the page to reset the password.
 9. If the number of comments or issues grow above 5 pagination for comments and issues will be turned on so users can navigate in content more easily.
 10. When creating an issue user can add image so other users will understand better what he want to explain.
+11. On main page there is 5 top paid issues
 
 ### For Admins of the site
 
@@ -83,7 +84,7 @@ password: 1Testthis
 
 ## Not implemented features
 
-1. User Profile
+1. User Profile 
 2. Charts that are showing summary for each month
 
 ## Technologies used
@@ -159,5 +160,5 @@ that i attached to this project.
   @teraspora
 -  Great thanks to @robinz_alumni from slack channel for a lot of voluntary help
 - Thank you to my teachers and people from slack channel
--  @NielMc, @aaronsnig501, @lechien73, @nazarja, @10xOXR, @Sonnerz, @Wings30306 
+-  @NielMc, @aaronsnig501, @lechien73, @nazarja, @10xOXR, @Sonnerz, @Wings30306, @johnL3
 

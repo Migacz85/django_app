@@ -9,7 +9,7 @@ def home(request):
     """Home page"""
 
     issues = Issues.objects.filter(
-        issue_type='Feature'
+        issue_type='Feature', status='Waiting'
     ).order_by('-upvotes')
 
     return render(request, 'home.html', {'issues':issues})

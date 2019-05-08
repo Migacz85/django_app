@@ -30,6 +30,10 @@ class UserRegistrationForm(UserCreationForm):
         widget=forms.PasswordInput,
     )
 
+    def __init__(self, *args, **kwargs):
+            super(UserRegistrationForm, self).__init__(*args, **kwargs)
+            self.fields['email'].required = True
+
     class Meta:
         """Specify fields you want to expose here"""
         model = User

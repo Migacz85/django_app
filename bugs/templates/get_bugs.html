@@ -2,71 +2,74 @@
 {% block form %}
 <div class="mr-auto">
 
-<form action="{% url 'new_bug' %}">
+  <form action="{% url 'new_bug' %}">
 
-  <button class="btn btn-primary float-right" type="submit" value="This is a button link"> Add
-    <a href="{% url 'new_bug' %}"> </a>
-    {% if issue_name == 'bugs' %}
-    <i class="fa fa-bug"></i>
-    {% else %}
-    <i class="fa fa-bolt"></i>
-    {% endif %}
-  </button>
-  <h2>Current list of {{ issue_name }}</h2>
-</div>
-</form>
-
-  {% if issue_name == 'bugs' %}
-  <div class="col"><img class="float-right" style="height: 80px" src="https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.pngmart.com%2Ffiles%2F6%2FAnt-PNG-Picture.png&f=1" alt=""></div>
-  <div style="clear:both"></div>
-  <both></both>
-  {% endif %}
-  {% if issue_name == 'features' %}
-  <div class="col"><img class="float-right" style="height: 80px" src="https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.lighthouseconferencing.com%2Fwp-content%2Fuploads%2F2015%2F08%2FAdditional-features-Document-comparison-and-questionnaires.png&f=1" alt=""></div>
-  <div style="clear:both"></div>
-  {% endif %}
-
-
-{% for bug in bugs %}
-{{ comments }}
-<div class="card mb-1">
-  {% if forloop.counter0|divisibleby:2 %}
-  <div class="bg-gray">
-    {% endif %}
-    <div class="col-lg-12 p-3">
-      <span class="float-left mr-2">
-        {% if bug.status == "Waiting" %}
-        <div class="badge badge-secondary">Wating</div> {% endif %}
-
-        {% ifequal bug.status "In progress" %}
-        <div class="badge badge-warning">In progress</div>
-        {% endifequal %}
-        {% ifequal bug.status "Completed" %}
-        <div class="badge badge-success">Completed</div>
-        {% endifequal %}
-      </span>
-      <div class="ml-1 float-right">
-        {{ bug.upvotes}} <i class="fa fa-hand-paper-o"></i></div>
-      <b><a href=" {% url 'get_bug_detail' bug.id %} "> {{bug.title}} </a></b>
-      <br>
+    <button class="btn btn-warning float-right text-white " type="submit" value="This is a button link"> Add
+      <a href="{% url 'new_bug' %}"> </a>
       {% if issue_name == 'bugs' %}
       <i class="fa fa-bug"></i>
       {% else %}
       <i class="fa fa-bolt"></i>
       {% endif %}
-      {{ bug.id }}
-      Opened on:
-      <i>{{ bug.created_date }}</i>
-      by
-      <i>{{ bug.username }}</i>
-      <div class="float-right">
-        {{bug.views}} <i class="fa fa-eye"></i>
-      </div>
-    </div>
-    {% if forloop.counter0|divisibleby:2 %}
-  </div>
-  {% endif %}
+    </button>
+    <h2>Current list of {{ issue_name }}</h2>
 </div>
+</form>
+
+{% if issue_name == 'bugs' %}
+<div class="col"><img class="float-right" style="height: 80px" src="https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.pngmart.com%2Ffiles%2F6%2FAnt-PNG-Picture.png&f=1" alt=""></div>
+<div style="clear:both"></div>
+<both></both>
+{% endif %}
+{% if issue_name == 'features' %}
+<div class="col"><img class="float-right" style="height: 80px" src="https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.lighthouseconferencing.com%2Fwp-content%2Fuploads%2F2015%2F08%2FAdditional-features-Document-comparison-and-questionnaires.png&f=1" alt=""></div>
+<div style="clear:both"></div>
+{% endif %}
+
+{% for bug in bugs %}
+{{ comments }}
+<a href=" {% url 'get_bug_detail' bug.id %} ">
+  <div class="card mb-1 issue-shadow">
+    {% if forloop.counter0|divisibleby:2 %}
+    <div class="bg-gray">
+      {% endif %}
+      <div class="col-lg-12 p-3">
+        <span class="float-left mr-2">
+          {% if bug.status == "Waiting" %}
+          <div class="badge badge-secondary">Wating</div> {% endif %}
+
+          {% ifequal bug.status "In progress" %}
+          <div class="badge badge-warning">In progress</div>
+          {% endifequal %}
+          {% ifequal bug.status "Completed" %}
+          <div class="badge badge-success">Completed</div>
+          {% endifequal %}
+        </span>
+        <div class="ml-1 float-right">
+          {{ bug.upvotes}} <i class="fa fa-hand-paper-o"></i></div>
+        <b>{{bug.title}} </b>
+        <br>
+        <span class="text-muted">
+          {% if issue_name == 'bugs' %}
+          <i class="fa fa-bug"></i>
+          {% else %}
+          <i class="fa fa-bolt"></i>
+          {% endif %}
+          {{ bug.id }}
+          Opened on:
+          <i>{{ bug.created_date }}</i>
+          by
+          <i>{{ bug.username }}</i>
+        </span>
+        <div class="float-right">
+          {{bug.views}} <i class="fa fa-eye"></i>
+        </div>
+      </div>
+      {% if forloop.counter0|divisibleby:2 %}
+    </div>
+    {% endif %}
+  </div>
+</a>
 {% endfor %}
 
 <nav aria-label="comment pagination" class="mt-5">
