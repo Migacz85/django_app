@@ -63,7 +63,6 @@ def cart_success(request):
     upvote_list = []
 
     for id, quantity in cart.items():
-        feature = get_object_or_404(Issues, pk=id)
         upvote_list.append(id)
 
     for id in upvote_list:

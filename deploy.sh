@@ -83,7 +83,7 @@ if [ $decision == 3 ]; then
     alias v="source venv/bin/activate"	
     alias sa="python manage.py startapp"	
     alias s="python manage.py createsuperuser"	
-    alias s3sync="aws s3 sync --acl public-read --sse --delete staticfiles s3://$AWS_STORAGE_BUCKET_NAME/staticfiles"
+    alias s3sync="aws s3 sync --acl public-read --sse --delete staticfiles s3://$AWS_STORAGE_BUCKET_NAME/$STATICFILES_LOCATION"
     alias pfl="pip3 freeze --local > requirements.txt"
 
     echo "" 

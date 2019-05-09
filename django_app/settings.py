@@ -176,6 +176,7 @@ else:
     ]
     host_images_link = 'http://' + os.environ.get('HOSTNAME') + ':' + os.environ.get('PORT') + str(MEDIA_URL)
 
+
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'Home.backends.EmailAuth',
