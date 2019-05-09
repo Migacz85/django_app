@@ -28,45 +28,64 @@
 
       </div>
 
-      <div class="col-lg-8 mx-auto text-center mt-5">
-        <h5>Top 5 features to implement:</h5>
+      <div class="col-lg-8 mx-auto mt-5">
+        <h5>Top 3 bugs to fix for <span class="badge badge-success">free</span></h5>
         <br>
         <table class="table">
-        <th>
+          <th>
           <td><b>Feature title</b></td>
           <td><b>Upvote Numbers</b></td>
           <td><b>Total $ payed</b></td>
-        </th>
-        {% for issue in issues %}
-        <tr>
-          <td></td>
-          <td> {{ issue.title }}</td>
-          <td>{{ issue.upvotes}}</td>
-          <td>{{ issue.upvotes|mul:10}}$</td>
-        </tr>
-        {% endfor %}
-
+          </th>
+          {% for bug in bugs %}
+          {% if forloop.counter <= 3 %} <tr>
+            <td></td>
+            <td> {{ bug.title }}</td>
+            <td>{{ bug.upvotes}}</td>
+            <td>{{ bug.upvotes|mul:10}}$</td>
+            </tr>
+            {% endif %}
+            {% endfor %}
         </table>
-        <br>
-        The higher upvote number is the <span class="bg-warning">higher
-          priority for implemeting new feature. </span> 
-        <br>
-        We are looking from you to post a lot of bugs and issues.
-        <br>
-        <br>
-        <h2 class="mb-5 text-justify">Excited ?</h2>
-        <br>
-        <img class="img-fluid rounded" src="https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fdrolesdemums.com%2Fwp-content%2Fuploads%2F2014%2F09%2Frituel-sommeil.jpg&f=1" alt="">
-      </div>
-      <div class="col-lg-8 mx-auto mt-5">
-        We hope you are :-) 
-        <div class="mt-5">
-          Sincerely
+
         </div>
-        <img style="width:200px" class=" mt-5" src="https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F2%2F2e%2FSignature_of_Siti_Nurhaliza.svg%2F1280px-Signature_of_Siti_Nurhaliza.svg.png&f=1" alt="signature">
+        <div class="col-lg-8 mx-auto mt-5">
+          <h5>Top 3 features to implement <span class="badge badge-warning">paid</span></h5>
+          <br>
+          <table class="table">
+            <th>
+            <td><b>Feature title</b></td>
+            <td><b>Upvote Numbers</b></td>
+            <td><b>Total $ payed</b></td>
+            </th>
+            {% for feature in features %}
+            {% if forloop.counter <= 3 %} <tr>
+              <td></td>
+              <td> {{ feature.title }}</td>
+              <td>{{ feature.upvotes}}</td>
+              <td>{{ feature.upvotes|mul:10}}$</td>
+              </tr>
+              {% endif %}
+              {% endfor %}
+          </table>
+
+          <br>
+          The higher upvote number is the <span class="bg-warning">higher
+            priority for implemeting new feature or fixing a bug. </span>
+          <br>
+          <br>
+          <h2 class="mb-5 text-justify">Excited ?</h2>
+          <br>
+          <img class="img-fluid rounded" src="https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fdrolesdemums.com%2Fwp-content%2Fuploads%2F2014%2F09%2Frituel-sommeil.jpg&f=1" alt="">
+        <div class="col-lg-8 mx-auto mt-5">
+          We hope you are :-)
+          <div class="mt-5">
+            Sincerely
+          </div>
+          <img style="width:200px" class=" mt-5" src="https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F2%2F2e%2FSignature_of_Siti_Nurhaliza.svg%2F1280px-Signature_of_Siti_Nurhaliza.svg.png&f=1" alt="signature">
+        </div>
       </div>
     </div>
-  </div>
 </section>
 {% endblock %}
 

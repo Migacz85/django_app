@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 from .models import Issues
 
 
-
 class TestViews(TestCase):
 
     def setUp(self):
@@ -60,8 +59,8 @@ class TestViews(TestCase):
         )
         # He navigate to the same issue as John and upvoted same issue
         response = self.client.get('/issues/{0}/upvote/'.format(self.issue.id))
-
         item = get_object_or_404(Issues, pk=1)
+
         self.assertEqual(response.status_code, 302)
         self.assertEqual("admin", str(response2.wsgi_request.user))
         self.assertEqual(item.upvotes, 2)

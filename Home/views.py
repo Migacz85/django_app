@@ -3,16 +3,24 @@ from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from Home.forms import UserLoginForm, UserRegistrationForm
-from bugs.models import Issues, IssueUpvote
+from bugs.models import Issues
+
 
 def home(request):
     """Home page"""
 
-    issues = Issues.objects.filter(
+    features = Issues.objects.filter(
         issue_type='Feature', status='Waiting'
     ).order_by('-upvotes')
 
-    return render(request, 'home.html', {'issues':issues})
+    bugs = Issues.objects.filter(
+        issue_type='Bug', status='Waiting'
+    ).order_by('-upvotes')
+
+    return render(request, 'home.html',
+                  {'features': features,
+                   'bugs': bugs,
+                   })
 
 
 @login_required

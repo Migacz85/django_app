@@ -12,14 +12,12 @@
 <form class='float-right' method="post" action="{% url 'add_to_cart' bug.id %}">
   {% csrf_token %}
   <input type="hidden" name="quantity" value="1">
-  <button type='submit' class='btn btn-warning text-white' data-toggle="tooltip" data-placement="top" title="Vote cost is 10$">Upvote {{ bug.upvotes }} 
-  
-  {% if upvoted %}
-  <i class="fa fa-hand-paper-o text-white"></i>
-  {% else %}
-  <i class="fa fa-hand-pointer-o text-white"></i>
-  {% endif %}</button>
-
+  <button type='submit' class='btn btn-warning text-white' data-toggle="tooltip" data-placement="top" title="Vote cost is 10$">Upvote {{ bug.upvotes }}
+    {% if upvoted %}
+    <i class="fa fa-hand-paper-o text-white"></i>
+    {% else %}
+    <i class="fa fa-hand-pointer-o text-white"></i>
+    {% endif %}</button>
 </form>
 {% endif %}
 {% else %}
@@ -88,9 +86,7 @@
     <a href="{% url 'add_comment_bugs' bug.id  %}" class="text-white"> Add comment </a>
   </div>
   <div class="btn btn-warning float-left mt-2">
-
     {% if issue_name == 'Feature' %}
-
     <a href="{% url 'get_features' %}" class="text-white">Go back to features list</a>
     {% else %}
     <a href="{% url 'get_bugs' %}" class="text-white">Go back to bug list</a>
@@ -125,3 +121,4 @@
   </nav>
 </div>
 {% endblock form %}
+

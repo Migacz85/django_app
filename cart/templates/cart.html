@@ -26,13 +26,13 @@
         <td> {{ item.quantity }} </td>
         <td>{{item.price|mul:item.quantity }} $</td>
         <td class="form-inline">
-        <form class='ml-2 form-inline' method="post" action="{% url 'remove_one' item.id %}">
+          <form class='ml-2 form-inline' method="post" action="{% url 'remove_one' item.id %}">
             {% csrf_token %}
             <button type="submit" class="btn btn-warning text-white btn-sm form-inline">
               <i class="fa fa-minus" aria-hidden="true"></i>
             </button>
           </form>
-        <form class='ml-2 form-inline' method="post" action="{% url 'add_one' item.id %}">
+          <form class='ml-2 form-inline' method="post" action="{% url 'add_one' item.id %}">
             {% csrf_token %}
             <button type="submit" class="btn btn-warning text-white btn-sm form-inline ">
               <i class="fa fa-plus" aria-hidden="true"></i>
@@ -69,24 +69,20 @@
 {% else %}
 <div class="card mt-5">
   <div class="card-header">
-   Summary
+    Summary
   </div>
   <div class="card-body">
-    
-<div class="alert alert-warning" role="alert">
-  <h4 class="alert-heading">Nothing in cart!</h4>
-  <p>You have nothing in your cart yet. </p>
-  <hr>
-  <p class="mb-0">Try to navigate to features and maybe you will find
-  something you want to purchase ?</p>
-  <p>If you don't know already we are selling votes for features that will
-  be implemented in future.</p>
-  
-  <p class="mb-0"> Thank You for your support ! </p>
-</div>
-
+    <div class="alert alert-warning" role="alert">
+      <h4 class="alert-heading">Nothing in cart!</h4>
+      <p>You have nothing in your cart yet. </p>
+      <hr>
+      <p class="mb-0">Try to navigate to features and maybe you will find
+        something you want to purchase ?</p>
+      <p>If you don't know already we are selling votes for features that will
+        be implemented in future.</p>
+      <p class="mb-0"> Thank You for your support ! </p>
+    </div>
   </div>
 </div>
 {% endif %}
 {% endblock %}
-

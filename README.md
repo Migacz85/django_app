@@ -26,7 +26,7 @@
 Project was build as an exercise for getting more familiar with Django framework.
 The idea of this project was to build an issue tracker with ticket system.
 Where people can easy vote for issues. Idea of voting is to simply show which 
-of bugs should be fixed first. Also features should be  connected with payment
+of bugs should be fixed first. Also features should be connected with payment
  system.  The [main goal of this project ](http://github.com/Migacz85/django_app/wiki/Goal-of-this-project)
 as well with [guidelines](http://github.com/Migacz85/django_app/wiki/Guidelines) 
 and [checklist](http://github.com/Migacz85/django_app/wiki/Checklist) that was 
@@ -145,7 +145,6 @@ Check what exactly need to be setup when starting new django project in section
 [Create new django project](http://github.com/Migacz85/django_app/wiki/Create-new-django-project)
 on wiki page 
 
-
 ## Interesting errors I noticed during development
 
 Because I was developing on linux and I had latest Python, I discovered
@@ -161,4 +160,3 @@ that i attached to this project.
 -  Great thanks to @robinz_alumni from slack channel for a lot of voluntary help
 - Thank you to my teachers and people from slack channel
 -  @NielMc, @aaronsnig501, @lechien73, @nazarja, @10xOXR, @Sonnerz, @Wings30306, @johnL3
-
