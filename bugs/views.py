@@ -125,7 +125,8 @@ def add_comment_issue(request, pk=None):
     title = "Add comment"
     return render(request, "create_or_edit_bug.html",
                   {'form': c, 'title': title,
-                   "simple_form": 1,
+                    'issue_name': bug.issue_type,
+                    "simple_form": 1,
                    })
 
 
