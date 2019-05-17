@@ -63,8 +63,8 @@ if [ $decision == 3 ]; then
     username="Migacz85" # Github login
     secrets=0 # Show value of environmental variables (with secrets)?
 
-    unset DEVELOPMENT
-    # export DEVELOPMENT=0
+    # unset DEVELOPMENT
+    export DEVELOPMENT=0
     
     export HOSTNAME='localhost' 
     export PORT=$port

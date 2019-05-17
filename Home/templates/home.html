@@ -22,7 +22,7 @@
           <li> post your bugs <span class="badge badge-success">free</span></li>
           <li> post your issues <span class="badge badge-success">free</span></li>
           <li> upvote bugs showing that you have this bug too <span class="badge badge-success">free</span></li>
-          <li> upvote features for $10 each. (after payment you can upvote again)
+          <li> upvote features for $10 each.You can buy as many votes as you want. 
             <span class="badge badge-warning">paid</span></li>
         </ul>
 
@@ -34,15 +34,13 @@
         <table class="table">
           <th>
           <td><b>Feature title</b></td>
-          <td><b>Upvote Numbers</b></td>
-          <td><b>Total $ payed</b></td>
+          <td><b>Upvote Number</b></td>
           </th>
           {% for bug in bugs %}
           {% if forloop.counter <= 3 %} <tr>
             <td></td>
             <td> {{ bug.title }}</td>
             <td>{{ bug.upvotes}}</td>
-            <td>{{ bug.upvotes|mul:10}}$</td>
             </tr>
             {% endif %}
             {% endfor %}
@@ -55,7 +53,7 @@
           <table class="table">
             <th>
             <td><b>Feature title</b></td>
-            <td><b>Upvote Numbers</b></td>
+            <td><b>Upvote Number</b></td>
             <td><b>Total $ payed</b></td>
             </th>
             {% for feature in features %}
@@ -77,7 +75,7 @@
           <h2 class="mb-5 text-justify">Excited ?</h2>
           <br>
           <img class="img-fluid rounded" src="https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fdrolesdemums.com%2Fwp-content%2Fuploads%2F2014%2F09%2Frituel-sommeil.jpg&f=1" alt="">
-        <div class="col-lg-8 mx-auto mt-5">
+        <div class="col-lg-8 mt-5">
           We hope you are :-)
           <div class="mt-5">
             Sincerely
