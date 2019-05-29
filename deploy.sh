@@ -124,7 +124,8 @@ if [ $decision == 3 ]; then
 fi
 
 # STARTNEWPROJECT
-if [ $decison == 1 ]; then
+if [ "$decison" == 1 ]; then
+
 	if [ ! -f secret.key ]; then
 		rand="$( strings /dev/urandom | tr -d '\n' | head -c50 )" 
           echo	"$rand" > secret.key
@@ -268,15 +269,15 @@ fi
 if [ $decision == 5 ]; then 
 
       pip3 freeze --local > requirements.txt 
-      coverage run --omit='*migrations*' --source=Home,cart,bugs,charts,checkout manage.py test
+      coverage run --omit='*migrations*, *venv*' --source=Home,cart,bugs,charts,checkout manage.py test
       coverage report
 
       echo "Build html coverage and push it on github? y/n"
       read decision
-      if [ $decision == y ]; then 
+      if [ $decision == "y" ]; then 
       coverage html 
       git add . 
-      git commit -m "Update: html Coverage"
+      git commit -m "Update: html coverage"
       git push 
       fi 
 fi

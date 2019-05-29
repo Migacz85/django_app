@@ -30,9 +30,9 @@
         <img id="keyboard_icon" src="keybd_closed.png" alt="Show keyboard shortcuts" />
 
         <h2 class="stats">
-            46 statements &nbsp;
+            45 statements &nbsp;
             <span class="run hide_run shortkey_r button_toggle_run">10 run</span>
-            <span class="mis shortkey_m button_toggle_mis">36 missing</span>
+            <span class="mis shortkey_m button_toggle_mis">35 missing</span>
             <span class="exc shortkey_x button_toggle_exc">0 excluded</span>
 
             
@@ -133,27 +133,26 @@
 <p id="n64" class="pln"><a href="#n64">64</a></p>
 <p id="n65" class="stm mis"><a href="#n65">65</a></p>
 <p id="n66" class="stm mis"><a href="#n66">66</a></p>
-<p id="n67" class="stm mis"><a href="#n67">67</a></p>
-<p id="n68" class="pln"><a href="#n68">68</a></p>
+<p id="n67" class="pln"><a href="#n67">67</a></p>
+<p id="n68" class="stm mis"><a href="#n68">68</a></p>
 <p id="n69" class="stm mis"><a href="#n69">69</a></p>
-<p id="n70" class="stm mis"><a href="#n70">70</a></p>
-<p id="n71" class="pln"><a href="#n71">71</a></p>
+<p id="n70" class="pln"><a href="#n70">70</a></p>
+<p id="n71" class="stm mis"><a href="#n71">71</a></p>
 <p id="n72" class="stm mis"><a href="#n72">72</a></p>
-<p id="n73" class="stm mis"><a href="#n73">73</a></p>
+<p id="n73" class="pln"><a href="#n73">73</a></p>
 <p id="n74" class="pln"><a href="#n74">74</a></p>
 <p id="n75" class="pln"><a href="#n75">75</a></p>
-<p id="n76" class="pln"><a href="#n76">76</a></p>
+<p id="n76" class="stm mis"><a href="#n76">76</a></p>
 <p id="n77" class="stm mis"><a href="#n77">77</a></p>
-<p id="n78" class="stm mis"><a href="#n78">78</a></p>
-<p id="n79" class="pln"><a href="#n79">79</a></p>
+<p id="n78" class="pln"><a href="#n78">78</a></p>
+<p id="n79" class="stm mis"><a href="#n79">79</a></p>
 <p id="n80" class="stm mis"><a href="#n80">80</a></p>
 <p id="n81" class="stm mis"><a href="#n81">81</a></p>
 <p id="n82" class="stm mis"><a href="#n82">82</a></p>
 <p id="n83" class="stm mis"><a href="#n83">83</a></p>
-<p id="n84" class="stm mis"><a href="#n84">84</a></p>
-<p id="n85" class="pln"><a href="#n85">85</a></p>
+<p id="n84" class="pln"><a href="#n84">84</a></p>
+<p id="n85" class="stm mis"><a href="#n85">85</a></p>
 <p id="n86" class="stm mis"><a href="#n86">86</a></p>
-<p id="n87" class="stm mis"><a href="#n87">87</a></p>
 
             </td>
             <td class="text">
@@ -222,28 +221,27 @@
 <p id="t63" class="stm mis">    <span class="nam">upvote_list</span> <span class="op">=</span> <span class="op">[</span><span class="op">]</span><span class="strut">&nbsp;</span></p>
 <p id="t64" class="pln"><span class="strut">&nbsp;</span></p>
 <p id="t65" class="stm mis">    <span class="key">for</span> <span class="nam">id</span><span class="op">,</span> <span class="nam">quantity</span> <span class="key">in</span> <span class="nam">cart</span><span class="op">.</span><span class="nam">items</span><span class="op">(</span><span class="op">)</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
-<p id="t66" class="stm mis">        <span class="nam">feature</span> <span class="op">=</span> <span class="nam">get_object_or_404</span><span class="op">(</span><span class="nam">Issues</span><span class="op">,</span> <span class="nam">pk</span><span class="op">=</span><span class="nam">id</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
-<p id="t67" class="stm mis">        <span class="nam">upvote_list</span><span class="op">.</span><span class="nam">append</span><span class="op">(</span><span class="nam">id</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
-<p id="t68" class="pln"><span class="strut">&nbsp;</span></p>
-<p id="t69" class="stm mis">    <span class="key">for</span> <span class="nam">id</span> <span class="key">in</span> <span class="nam">upvote_list</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
-<p id="t70" class="stm mis">        <span class="nam">feature_name</span> <span class="op">=</span> <span class="nam">get_object_or_404</span><span class="op">(</span><span class="strut">&nbsp;</span></p>
-<p id="t71" class="pln">            <span class="nam">Issues</span><span class="op">,</span> <span class="nam">id</span><span class="op">=</span><span class="nam">id</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
-<p id="t72" class="stm mis">        <span class="key">try</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
-<p id="t73" class="stm mis">            <span class="nam">upvote</span> <span class="op">=</span> <span class="nam">get_object_or_404</span><span class="op">(</span><span class="strut">&nbsp;</span></p>
-<p id="t74" class="pln">                <span class="nam">IssueUpvote</span><span class="op">,</span> <span class="nam">user</span><span class="op">=</span><span class="nam">request</span><span class="op">.</span><span class="nam">user</span><span class="op">,</span><span class="strut">&nbsp;</span></p>
-<p id="t75" class="pln">                <span class="nam">upvoted_feature</span><span class="op">=</span><span class="nam">feature_name</span><span class="strut">&nbsp;</span></p>
-<p id="t76" class="pln">            <span class="op">)</span><span class="strut">&nbsp;</span></p>
-<p id="t77" class="stm mis">        <span class="key">except</span> <span class="nam">BaseException</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
-<p id="t78" class="stm mis">            <span class="nam">upvote</span> <span class="op">=</span> <span class="nam">IssueUpvote</span><span class="op">(</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
-<p id="t79" class="pln"><span class="strut">&nbsp;</span></p>
-<p id="t80" class="stm mis">        <span class="nam">upvote</span><span class="op">.</span><span class="nam">user</span> <span class="op">=</span> <span class="nam">request</span><span class="op">.</span><span class="nam">user</span><span class="strut">&nbsp;</span></p>
-<p id="t81" class="stm mis">        <span class="nam">upvote</span><span class="op">.</span><span class="nam">upvoted_bug</span> <span class="op">=</span> <span class="nam">feature_name</span><span class="strut">&nbsp;</span></p>
-<p id="t82" class="stm mis">        <span class="nam">feature_name</span><span class="op">.</span><span class="nam">upvotes</span> <span class="op">+=</span> <span class="num">1</span><span class="strut">&nbsp;</span></p>
-<p id="t83" class="stm mis">        <span class="nam">feature_name</span><span class="op">.</span><span class="nam">save</span><span class="op">(</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
-<p id="t84" class="stm mis">        <span class="nam">upvote</span><span class="op">.</span><span class="nam">save</span><span class="op">(</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
-<p id="t85" class="pln"><span class="strut">&nbsp;</span></p>
-<p id="t86" class="stm mis">    <span class="nam">request</span><span class="op">.</span><span class="nam">session</span><span class="op">[</span><span class="str">'cart'</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span><span class="op">}</span><span class="strut">&nbsp;</span></p>
-<p id="t87" class="stm mis">    <span class="key">return</span> <span class="nam">redirect</span><span class="op">(</span><span class="nam">reverse</span><span class="op">(</span><span class="str">'get_features'</span><span class="op">)</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t66" class="stm mis">        <span class="nam">upvote_list</span><span class="op">.</span><span class="nam">append</span><span class="op">(</span><span class="nam">id</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t67" class="pln"><span class="strut">&nbsp;</span></p>
+<p id="t68" class="stm mis">    <span class="key">for</span> <span class="nam">id</span> <span class="key">in</span> <span class="nam">upvote_list</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
+<p id="t69" class="stm mis">        <span class="nam">feature_name</span> <span class="op">=</span> <span class="nam">get_object_or_404</span><span class="op">(</span><span class="strut">&nbsp;</span></p>
+<p id="t70" class="pln">            <span class="nam">Issues</span><span class="op">,</span> <span class="nam">id</span><span class="op">=</span><span class="nam">id</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t71" class="stm mis">        <span class="key">try</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
+<p id="t72" class="stm mis">            <span class="nam">upvote</span> <span class="op">=</span> <span class="nam">get_object_or_404</span><span class="op">(</span><span class="strut">&nbsp;</span></p>
+<p id="t73" class="pln">                <span class="nam">IssueUpvote</span><span class="op">,</span> <span class="nam">user</span><span class="op">=</span><span class="nam">request</span><span class="op">.</span><span class="nam">user</span><span class="op">,</span><span class="strut">&nbsp;</span></p>
+<p id="t74" class="pln">                <span class="nam">upvoted_feature</span><span class="op">=</span><span class="nam">feature_name</span><span class="strut">&nbsp;</span></p>
+<p id="t75" class="pln">            <span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t76" class="stm mis">        <span class="key">except</span> <span class="nam">BaseException</span><span class="op">:</span><span class="strut">&nbsp;</span></p>
+<p id="t77" class="stm mis">            <span class="nam">upvote</span> <span class="op">=</span> <span class="nam">IssueUpvote</span><span class="op">(</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t78" class="pln"><span class="strut">&nbsp;</span></p>
+<p id="t79" class="stm mis">        <span class="nam">upvote</span><span class="op">.</span><span class="nam">user</span> <span class="op">=</span> <span class="nam">request</span><span class="op">.</span><span class="nam">user</span><span class="strut">&nbsp;</span></p>
+<p id="t80" class="stm mis">        <span class="nam">upvote</span><span class="op">.</span><span class="nam">upvoted_bug</span> <span class="op">=</span> <span class="nam">feature_name</span><span class="strut">&nbsp;</span></p>
+<p id="t81" class="stm mis">        <span class="nam">feature_name</span><span class="op">.</span><span class="nam">upvotes</span> <span class="op">+=</span> <span class="num">1</span><span class="strut">&nbsp;</span></p>
+<p id="t82" class="stm mis">        <span class="nam">feature_name</span><span class="op">.</span><span class="nam">save</span><span class="op">(</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t83" class="stm mis">        <span class="nam">upvote</span><span class="op">.</span><span class="nam">save</span><span class="op">(</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
+<p id="t84" class="pln"><span class="strut">&nbsp;</span></p>
+<p id="t85" class="stm mis">    <span class="nam">request</span><span class="op">.</span><span class="nam">session</span><span class="op">[</span><span class="str">'cart'</span><span class="op">]</span> <span class="op">=</span> <span class="op">{</span><span class="op">}</span><span class="strut">&nbsp;</span></p>
+<p id="t86" class="stm mis">    <span class="key">return</span> <span class="nam">redirect</span><span class="op">(</span><span class="nam">reverse</span><span class="op">(</span><span class="str">'get_features'</span><span class="op">)</span><span class="op">)</span><span class="strut">&nbsp;</span></p>
 
             </td>
         </tr>
@@ -254,7 +252,7 @@
     <div class="content">
         <p>
             <a class="nav" href="index.html">&#xab; index</a> &nbsp; &nbsp; <a class="nav" href="https://coverage.readthedocs.io">coverage.py v4.5.3</a>,
-            created at 2019-05-08 16:48
+            created at 2019-05-19 16:36
         </p>
     </div>
 </div>

@@ -8,6 +8,7 @@
 {% if cart_items == '[]' %}
 <h1>empty</h1>
 {% endif %}
+
 <div class="card mt-5">
   <div class="card-header jenter">
     Summary
@@ -22,7 +23,7 @@
       </tr>
       {% for item in cart_items %}
       <tr>
-        <td><a href=" {% url 'get_bug_detail' item.ticket.id %}">{{item.ticket.title}} </a></td>
+        <td><a href="{% url 'get_bug_detail' item.ticket.id %}">{{item.ticket.title}} </a></td>
         <td> {{ item.quantity }} </td>
         <td>{{item.price|mul:item.quantity }} $</td>
         <td class="form-inline">
@@ -52,6 +53,7 @@
     <hr>
   </div>
   {% if total == 0 %}
+
   <div class="form-group float-right">
     <button class="btn mr-5" role="button">Checkout</button>
   </div>
@@ -67,22 +69,19 @@
 </div>
 </div>
 {% else %}
-<div class="card mt-5">
-  <div class="card-header">
-    Summary
-  </div>
-  <div class="card-body">
-    <div class="alert alert-warning" role="alert">
-      <h4 class="alert-heading">Nothing in cart!</h4>
-      <p>You have nothing in your cart yet. </p>
-      <hr>
-      <p class="mb-0">Try to navigate to features and maybe you will find
-        something you want to purchase ?</p>
-      <p>If you don't know already we are selling votes for features that will
-        be implemented in future.</p>
-      <p class="mb-0"> Thank You for your support ! </p>
-    </div>
+
+<div class="card-body mt-5">
+  <div class="alert alert-warning" role="alert">
+    <h4 class="alert-heading">Nothing in cart!</h4>
+    <p>You have nothing in your cart yet. </p>
+    <hr>
+    <p class="mb-0">Try to navigate to features and maybe you will find
+    something you want to purchase ?</p>
+    <p>If you don't know already we are selling votes for features that will
+    be implemented in future.</p>
+    <p class="mb-0"> Thank You for your support ! </p>
   </div>
 </div>
+
 {% endif %}
 {% endblock %}
