@@ -36,8 +36,8 @@ of whole documentation that is showing a bigger picture in smaller form.
 
 If you want to see how admin panel is implemented here is account to test it:
 
-login: test_account
-password: 1Testthis
+- login: test_account
+- password: 1Testthis
 
 
 ## Implemented features 
